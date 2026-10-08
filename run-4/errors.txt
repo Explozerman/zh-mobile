@@ -1,0 +1,13 @@
+294:FAILED: _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o 
+304:/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:72:9: error: call to undeclared function 'pthread_cancel'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+1928:FAILED: dxvk_android_build-prefix/src/dxvk_android_build-stamp/dxvk_android_build-build _deps/dxvk-build-android/src/d3d8/libdxvk_d3d8.so _deps/dxvk-build-android/src/d3d9/libdxvk_d3d9.so /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/dxvk_android_build-prefix/src/dxvk_android_build-stamp/dxvk_android_build-build /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/src/d3d8/libdxvk_d3d8.so /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/src/d3d9/libdxvk_d3d9.so 
+2043:FAILED: src/dxvk/libdxvk.a.p/dxvk_adapter.cpp.o 
+2045:../../../../references/fbraz3-dxvk/src/dxvk/dxvk_adapter.cpp:344:35: error: use of undeclared identifier 'VK_KHR_PORTABILITY_SUBSET_EXTENSION_NAME'
+2048:../../../../references/fbraz3-dxvk/src/dxvk/dxvk_adapter.cpp:346:29: error: use of undeclared identifier 'VK_KHR_PORTABILITY_SUBSET_EXTENSION_NAME'
+2051:../../../../references/fbraz3-dxvk/src/dxvk/dxvk_adapter.cpp:523:5: error: unknown type name 'VkPhysicalDevicePortabilitySubsetFeaturesKHR'; did you mean 'VkPhysicalDeviceVariablePointerFeaturesKHR'?
+2058:../../../../references/fbraz3-dxvk/src/dxvk/dxvk_adapter.cpp:524:7: error: use of undeclared identifier 'VK_STRUCTURE_TYPE_PHYSICAL_DEVICE_PORTABILITY_SUBSET_FEATURES_KHR'
+44206:FAILED: GeneralsMD/Code/Libraries/Source/WWVegas/WWDownload/CMakeFiles/z_wwdownload.dir/__/__/__/__/__/__/Core/Libraries/Source/WWVegas/WWDownload/FTP.cpp.o 
+44217:/home/runner/work/zh-mobile/zh-mobile/Core/Libraries/Source/WWVegas/WWDownload/FTP.cpp:33:10: fatal error: 'sys/timeb.h' file not found
+294129:FAILED: GeneralsMD/Code/GameEngine/CMakeFiles/z_gameengine.dir/__/__/__/Core/GameEngine/Source/Common/INI/INI.cpp.o 
+294578:/home/runner/work/zh-mobile/zh-mobile/Core/GameEngine/Source/Common/INI/INI.cpp:1682:40: error: call to deleted function 'from_chars'
+294593:/home/runner/work/zh-mobile/zh-mobile/Core/GameEngine/Source/Common/INI/INI.cpp:1695:25: error: call to deleted function 'from_chars'
