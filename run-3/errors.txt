@@ -1,0 +1,3 @@
+57:FAILED: dxvk_android_build-prefix/src/dxvk_android_build-stamp/dxvk_android_build-configure /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/dxvk_android_build-prefix/src/dxvk_android_build-stamp/dxvk_android_build-configure 
+358:FAILED: _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o 
+368:/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:72:9: error: call to undeclared function 'pthread_cancel'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]

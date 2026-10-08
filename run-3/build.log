@@ -1,0 +1,592 @@
+[0/2] Re-checking globbed directories...
+[1/1443] Creating directories for 'dxvk_android_build'
+[2/1443] No download step for 'dxvk_android_build'
+[3/1443] No update_disconnected step for 'dxvk_android_build'
+[4/1443] No patch_disconnected step for 'dxvk_android_build'
+[5/1443] Building CXX object CMakeFiles/liblzhl.dir/_deps/lzhl-src/CompLibHeader/Lzhl.cpp.o
+[6/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/dynapi/SDL_dynapi.c.o
+[7/1443] Building CXX object CMakeFiles/liblzhl.dir/_deps/lzhl-src/CompLibHeader/Lz.cpp.o
+[8/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_atan2.c.o
+[9/1443] Building CXX object CMakeFiles/liblzhl.dir/_deps/lzhl-src/CompLibHeader/Huff.cpp.o
+[10/1443] Linking CXX static library libliblzhl.a
+[11/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/cmake_pch.h.pch
+[12/1443] Building CXX object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/cmake_pch.hxx.pch
+[13/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_log.c.o
+[14/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_exp.c.o
+[15/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_error.c.o
+[16/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL.c.o
+[17/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_assert.c.o
+[18/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_guid.c.o
+[19/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_list.c.o
+[20/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_hints.c.o
+[21/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_hashtable.c.o
+[22/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_fmod.c.o
+[23/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/atomic/SDL_atomic.c.o
+[24/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/atomic/SDL_spinlock.c.o
+[25/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_log.c.o
+[26/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_audiodev.c.o
+[27/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_properties.c.o
+[28/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/SDL_utils.c.o
+[29/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_audioqueue.c.o
+[30/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_audioresample.c.o
+[31/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_mixer.c.o
+[32/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_audio.c.o
+[33/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/core/SDL_core_unsupported.c.o
+[34/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/cpuinfo/SDL_cpuinfo.c.o
+[35/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/camera/SDL_camera.c.o
+[36/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_audiotypecvt.c.o
+[37/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_clipboardevents.c.o
+[38/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_categories.c.o
+[39/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_displayevents.c.o
+[40/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_wave.c.o
+[41/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_dropevents.c.o
+[42/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_eventwatch.c.o
+[43/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_keysym_to_keycode.c.o
+[44/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_keysym_to_scancode.c.o
+[45/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_keymap.c.o
+[46/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_keyboard.c.o
+[47/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_pen.c.o
+[48/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_quit.c.o
+[49/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_scancode_tables.c.o
+[50/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/SDL_audiocvt.c.o
+[51/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/imKStoUCS.c.o
+[52/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_windowevents.c.o
+[53/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/filesystem/SDL_filesystem.c.o
+[54/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_events.c.o
+[55/1443] Performing configure step for 'dxvk_android_build'
+FAILED: dxvk_android_build-prefix/src/dxvk_android_build-stamp/dxvk_android_build-configure /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/dxvk_android_build-prefix/src/dxvk_android_build-stamp/dxvk_android_build-configure 
+cd /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android && /usr/local/bin/cmake -E env PKG_CONFIG_LIBDIR=/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig PKG_CONFIG_PATH=/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig /bin/meson setup /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android /home/runner/work/zh-mobile/zh-mobile/references/fbraz3-dxvk --cross-file /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/meson-arm64-android-cross.ini -Ddxvk_native_wsi=sdl3 -Denable_dxgi=false -Denable_d3d10=false -Denable_d3d11=false --buildtype=release --reconfigure && /usr/local/bin/cmake -E touch /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/dxvk_android_build-prefix/src/dxvk_android_build-stamp/dxvk_android_build-configure
+The Meson build system
+Version: 1.3.2
+Source dir: /home/runner/work/zh-mobile/zh-mobile/references/fbraz3-dxvk
+Build dir: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android
+Build type: cross build
+Project name: dxvk
+Project version: 2.6.0
+C compiler for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang (clang 18.0.3 "Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)")
+C linker for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang ld.lld 18.0.3
+C++ compiler for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ (clang 18.0.3 "Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)")
+C++ linker for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ ld.lld 18.0.3
+C compiler for the build machine: cc (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C linker for the build machine: cc ld.bfd 2.42
+C++ compiler for the build machine: c++ (gcc 13.3.0 "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C++ linker for the build machine: c++ ld.bfd 2.42
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: aarch64
+Host machine cpu: armv8-a
+Target machine cpu family: aarch64
+Target machine cpu: armv8-a
+Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
+Found CMake: NO
+Run-time dependency libdisplay-info found: NO (tried pkgconfig and cmake)
+Looking for a fallback subproject for the dependency libdisplay-info
+
+Executing subproject libdisplay-info 
+
+libdisplay-info| Project name: libdisplay-info
+libdisplay-info| Project version: 0.0.0
+libdisplay-info| C compiler for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang (clang 18.0.3 "Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)")
+libdisplay-info| C linker for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang ld.lld 18.0.3
+libdisplay-info| C compiler for the build machine: cc (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+libdisplay-info| C linker for the build machine: cc ld.bfd 2.42
+libdisplay-info| Program tool/gen-search-table.py found: YES (/home/runner/work/zh-mobile/zh-mobile/references/fbraz3-dxvk/subprojects/libdisplay-info/tool/gen-search-table.py)
+libdisplay-info| Library m found: YES
+libdisplay-info| Compiler for C supports arguments -Wundef: YES
+libdisplay-info| Compiler for C supports arguments -Wmissing-prototypes: YES
+libdisplay-info| Compiler for C supports arguments -Walloca: YES
+libdisplay-info| Compiler for C supports arguments -Wdeclaration-after-statement: YES
+libdisplay-info| Compiler for C supports arguments -Wconversion: YES
+libdisplay-info| Compiler for C supports arguments -Wno-unused-parameter: YES
+libdisplay-info| Compiler for C supports arguments -Wno-missing-field-initializers: YES
+libdisplay-info| Compiler for C supports arguments -Werror=implicit: YES
+libdisplay-info| Build targets in project: 2
+libdisplay-info| Subproject libdisplay-info finished.
+
+Dependency libdisplay-info from subproject subprojects/libdisplay-info found: YES 0.0.0
+Program touch found: YES (/usr/bin/touch)
+Run-time dependency sdl3 found: NO (tried pkgconfig and cmake)
+sdl2-config found: NO
+Run-time dependency sdl2 found: NO (tried pkgconfig, config-tool and cmake)
+Run-time dependency glfw found: NO (tried pkgconfig and cmake)
+
+../../../../references/fbraz3-dxvk/meson.build:168:4: ERROR: Problem encountered: SDL3, SDL2, or GLFW are required to build dxvk-native
+
+A full log can be found at /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-logs/meson-log.txt
+[56/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_touch.c.o
+[57/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/haptic/SDL_haptic.c.o
+[58/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/io/SDL_asyncio.c.o
+[59/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/hidapi/SDL_hidapi.c.o
+[60/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/events/SDL_mouse.c.o
+[61/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/io/generic/SDL_asyncio_generic.c.o
+[62/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/SDL_steam_virtual_gamepad.c.o
+[63/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/controller_type.c.o
+[64/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/locale/SDL_locale.c.o
+[65/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/main/SDL_runapp.c.o
+[66/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/main/SDL_main_callbacks.c.o
+[67/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/misc/SDL_libusb.c.o
+[68/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/misc/SDL_url.c.o
+[69/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/power/SDL_power.c.o
+[70/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/SDL_render_unsupported.c.o
+[71/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/io/SDL_iostream.c.o
+[72/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/direct3d/SDL_render_d3d.c.o
+[73/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/direct3d/SDL_shaders_d3d.c.o
+[74/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/SDL_yuv_sw.c.o
+[75/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/direct3d11/SDL_render_d3d11.c.o
+[76/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/direct3d11/SDL_shaders_d3d11.c.o
+[77/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/direct3d12/SDL_shaders_d3d12.c.o
+[78/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/direct3d12/SDL_render_d3d12.c.o
+[79/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/gpu/SDL_pipeline_gpu.c.o
+[80/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/gpu/SDL_shaders_gpu.c.o
+[81/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/ngage/SDL_render_ngage.c.o
+[82/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/opengl/SDL_render_gl.c.o
+[83/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/opengl/SDL_shaders_gl.c.o
+[84/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/SDL_joystick.c.o
+[85/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/gpu/SDL_gpu.c.o
+[86/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/ps2/SDL_render_ps2.c.o
+[87/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/opengles2/SDL_shaders_gles2.c.o
+[88/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/psp/SDL_render_psp.c.o
+[89/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/gpu/SDL_render_gpu.c.o
+[90/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/SDL_gamepad.c.o
+[91/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/software/SDL_blendpoint.c.o
+[92/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/software/SDL_drawpoint.c.o
+[93/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/software/SDL_drawline.c.o
+[94/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/opengles2/SDL_render_gles2.c.o
+[95/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/vitagxm/SDL_render_vita_gxm.c.o
+[96/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/vitagxm/SDL_render_vita_gxm_memory.c.o
+[97/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/vitagxm/SDL_render_vita_gxm_tools.c.o
+[98/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/software/SDL_render_sw.c.o
+[99/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/software/SDL_blendfillrect.c.o
+[100/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/vulkan/SDL_shaders_vulkan.c.o
+[101/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_crc16.c.o
+[102/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_crc32.c.o
+[103/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/sensor/SDL_sensor.c.o
+[104/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_getenv.c.o
+[105/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_malloc.c.o
+[106/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_iconv.c.o
+[107/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_memcpy.c.o
+[108/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_memmove.c.o
+[109/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_memset.c.o
+[110/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_mslibc.c.o
+[111/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_murmur3.c.o
+[112/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/SDL_render.c.o
+[113/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_random.c.o
+[114/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/software/SDL_triangle.c.o
+[115/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_strtokr.c.o
+[116/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_stdlib.c.o
+[117/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/storage/SDL_storage.c.o
+[118/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/time/SDL_time.c.o
+[119/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/thread/SDL_thread.c.o
+[120/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_string.c.o
+[121/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/timer/SDL_timer.c.o
+[122/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/stdlib/SDL_qsort.c.o
+[123/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit.c.o
+[124/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit_1.c.o
+[125/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/software/SDL_blendline.c.o
+[126/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/render/vulkan/SDL_render_vulkan.c.o
+[127/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit_copy.c.o
+[128/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_RLEaccel.c.o
+[129/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit_slow.c.o
+[130/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit_0.c.o
+[131/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_clipboard.c.o
+[132/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_bmp.c.o
+[133/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_fillrect.c.o
+[134/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit_A.c.o
+[135/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_rect.c.o
+[136/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_egl.c.o
+[137/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_pixels.c.o
+[138/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_rotate.c.o
+[139/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit_N.c.o
+[140/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_video_unsupported.c.o
+[141/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_stretch.c.o
+[142/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_vulkan_utils.c.o
+[143/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/yuv2rgb/yuv_rgb_lsx.c.o
+[144/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/yuv2rgb/yuv_rgb_sse.c.o
+[145/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_surface.c.o
+[146/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/dummy/SDL_dummyaudio.c.o
+[147/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/disk/SDL_diskaudio.c.o
+[148/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/loadso/dlopen/SDL_sysloadso.c.o
+[149/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/virtual/SDL_virtualjoystick.c.o
+[150/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/dummy/SDL_nullevents.c.o
+[151/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/dummy/SDL_nullframebuffer.c.o
+[152/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/dummy/SDL_nullvideo.c.o
+[153/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_yuv.c.o
+[154/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/misc/android/SDL_sysurl.c.o
+[155/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/openslES/SDL_openslES.c.o
+[156/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/audio/aaudio/SDL_aaudio.c.o
+[157/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/filesystem/android/SDL_sysfilesystem.c.o
+[158/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/filesystem/posix/SDL_sysfsops.c.o
+[159/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/haptic/android/SDL_syshaptic.c.o
+[160/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/yuv2rgb/yuv_rgb_std.c.o
+[161/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_8bitdo.c.o
+[162/1443] Building CXX object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/hidapi/android/hid.cpp.o
+[163/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_video.c.o
+[164/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/core/android/SDL_android.c.o
+[165/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_gamecube.c.o
+[166/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_flydigi.c.o
+[167/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_combined.c.o
+[168/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_luna.c.o
+[169/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_lg4ff.c.o
+[170/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_ps5.c.o
+[171/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_ps3.c.o
+[172/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_rumble.c.o
+[173/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_shield.c.o
+[174/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_gip.c.o
+[175/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_stadia.c.o
+[176/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_ps4.c.o
+[177/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_sinput.c.o
+[178/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_steam_triton.c.o
+[179/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_steam_hori.c.o
+[180/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_switch2.c.o
+[181/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_steamdeck.c.o
+[182/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_steam.c.o
+[183/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_blit_auto.c.o
+[184/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_xbox360.c.o
+[185/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_xbox360w.c.o
+[186/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_zuiki.c.o
+[187/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_switch.c.o
+[188/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_xboxone.c.o
+[189/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/haptic/hidapi/SDL_hidapihaptic.c.o
+[190/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_report_descriptor.c.o
+[191/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/power/android/SDL_syspower.c.o
+[192/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapijoystick.c.o
+[193/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/locale/android/SDL_syslocale.c.o
+[194/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/hidapi/SDL_hidapi_wii.c.o
+[195/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/timer/unix/SDL_systimer.c.o
+[196/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/time/unix/SDL_systime.c.o
+[197/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidclipboard.c.o
+[198/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/joystick/android/SDL_sysjoystick.c.o
+[199/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/sensor/android/SDL_androidsensor.c.o
+/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/sdl3-src/src/sensor/android/SDL_androidsensor.c:140:26: warning: 'ASensorManager_getInstance' is deprecated: first deprecated in Android 26 - Use ASensorManager_getInstanceForPackage instead [-Wdeprecated-declarations]
+  140 |     SDL_sensor_manager = ASensorManager_getInstance();
+      |                          ^
+/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/android/sensor.h:751:17: note: 'ASensorManager_getInstance' has been explicitly marked deprecated here
+  751 | ASensorManager* ASensorManager_getInstance()
+      |                 ^
+1 warning generated.
+[200/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidkeyboard.c.o
+[201/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidgl.c.o
+[202/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidmessagebox.c.o
+[203/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidevents.c.o
+[204/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidpen.c.o
+[205/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidmouse.c.o
+[206/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidtouch.c.o
+[207/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidwindow.c.o
+[208/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/haptic/hidapi/SDL_hidapihaptic_lg4ff.c.o
+[209/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/thread/pthread/SDL_sysmutex.c.o
+[210/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/thread/pthread/SDL_sysrwlock.c.o
+[211/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/thread/pthread/SDL_syscond.c.o
+[212/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/thread/pthread/SDL_systhread.c.o
+[213/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidvideo.c.o
+[214/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/thread/pthread/SDL_systls.c.o
+[215/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/android/SDL_androidvulkan.c.o
+[216/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/thread/pthread/SDL_syssem.c.o
+[217/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/dialog/SDL_dialog.c.o
+[218/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/dialog/android/SDL_androiddialog.c.o
+[219/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenevents.c.o
+[220/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenopengles.c.o
+[221/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/process/SDL_process.c.o
+[222/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/dialog/SDL_dialog_utils.c.o
+[223/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/dialog/unix/SDL_zenitymessagebox.c.o
+[224/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenframebuffer.c.o
+[225/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenvideo.c.o
+[226/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/tray/SDL_tray_utils.c.o
+[227/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenwindow.c.o
+[228/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/process/dummy/SDL_dummyprocess.c.o
+[229/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/SDL_stb.c.o
+[230/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/video/offscreen/SDL_offscreenvulkan.c.o
+[231/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/tray/dummy/SDL_tray.c.o
+[232/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/camera/dummy/SDL_camera_dummy.c.o
+[233/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/main/generic/SDL_sysmain_callbacks.c.o
+[234/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/storage/generic/SDL_genericstorage.c.o
+[235/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_pow.c.o
+[236/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_sqrt.c.o
+[237/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_rem_pio2.c.o
+[238/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/k_cos.c.o
+[239/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/e_log10.c.o
+[240/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/k_rem_pio2.c.o
+[241/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/k_sin.c.o
+[242/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_atan.c.o
+[243/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/k_tan.c.o
+[244/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_cos.c.o
+[245/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_fabs.c.o
+[246/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_floor.c.o
+[247/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_copysign.c.o
+[248/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_isinf.c.o
+[249/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_isnan.c.o
+[250/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_isnanf.c.o
+[251/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_modf.c.o
+[252/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_isinff.c.o
+[253/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_WIC.c.o
+[254/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_scalbn.c.o
+[255/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG.c.o
+[256/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_sin.c.o
+[257/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_ani.c.o
+[258/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL_uclibc.dir/src/libm/s_tan.c.o
+[259/1443] Linking C static library _deps/sdl3-build/libSDL_uclibc.a
+[260/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_anim_encoder.c.o
+[261/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_avif.c.o
+[262/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_bmp.c.o
+[263/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_anim_decoder.c.o
+[264/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_gpu.c.o
+[265/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_jxl.c.o
+[266/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_pcx.c.o
+[267/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_lbm.c.o
+[268/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_png.c.o
+[269/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_pnm.c.o
+[270/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_qoi.c.o
+[271/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_jpg.c.o
+[272/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_tif.c.o
+[273/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_gif.c.o
+[274/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_tga.c.o
+[275/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_webp.c.o
+[276/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_xv.c.o
+[277/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_libpng.c.o
+[278/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_xpm.c.o
+[279/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_xcf.c.o
+[280/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/xmlman.c.o
+[281/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsassert.c.o
+[282/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/darray.c.o
+[283/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsavailable.c.o
+[284/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gscore.c.o
+[285/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsdebug.c.o
+[286/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gscrypt.c.o
+[287/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatform.c.o
+[288/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsmemory.c.o
+[289/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformsocket.c.o
+[290/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o
+FAILED: _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o 
+/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/clang --target=aarch64-none-linux-android29 --sysroot=/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/sysroot -DGSI_DOMAIN_NAME=\"server.cnc-online.net\" -DGS_HTTPS -DGS_PEER -I/home/runner/work/zh-mobile/zh-mobile/Generals/Code/CompatLib/Include -I/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/include -I/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/include/gamespy -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security  -O2 -g -DNDEBUG -fPIC -Wsuggest-override -ffp-contract=off -pthread -MD -MT _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o -MF _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o.d -o _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformthread.c.o -c /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/gsplatformthread.c
+In file included from /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/gsplatformthread.c:16:
+/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:14:9: warning: '_REENTRANT' macro redefined [-Wmacro-redefined]
+   14 | #define _REENTRANT
+      |         ^
+<built-in>:395:9: note: previous definition is here
+  395 | #define _REENTRANT 1
+      |         ^
+In file included from /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/gsplatformthread.c:16:
+/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:72:9: error: call to undeclared function 'pthread_cancel'; ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+   72 |     if (pthread_cancel(id.thread) != PTHREAD_NO_ERROR) {
+      |         ^
+/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/gamespy-src/src/common/linux/gsthreadlinux.c:72:9: note: did you mean 'pthread_once'?
+/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/include/pthread.h:264:5: note: 'pthread_once' declared here
+  264 | int pthread_once(pthread_once_t* _Nonnull __once, void (* _Nonnull __init_routine)(void));
+      |     ^
+1 warning and 1 error generated.
+[291/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsrc4.c.o
+[292/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsplatformutil.c.o
+[293/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gssha1.c.o
+[294/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsssl.c.o
+[295/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gslargeint.c.o
+[296/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/hashtable.c.o
+[297/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsstringutil.c.o
+[298/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/md5c.c.o
+[299/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_svg.c.o
+[300/1443] Building C object _deps/gamespy-build/src/chat/CMakeFiles/gschat.dir/chatcrypt.c.o
+[301/1443] Building C object _deps/gamespy-build/src/chat/CMakeFiles/gschat.dir/chatcallbacks.c.o
+[302/1443] Building C object _deps/gamespy-build/src/chat/CMakeFiles/gschat.dir/chatchannel.c.o
+[303/1443] Building C object _deps/gamespy-build/src/common/CMakeFiles/gscommon.dir/gsxml.c.o
+[304/1443] Building C object _deps/sdl3-build/CMakeFiles/SDL3-shared.dir/src/gpu/vulkan/SDL_gpu_vulkan.c.o
+[305/1443] Building C object _deps/gamespy-build/src/natneg/CMakeFiles/gsnatneg.dir/natify.c.o
+[306/1443] Building C object _deps/gamespy-build/src/chat/CMakeFiles/gschat.dir/chatsocket.c.o
+[307/1443] Linking CXX shared library _deps/sdl3-build/libSDL3.so
+[308/1443] Building C object _deps/gamespy-build/src/chat/CMakeFiles/gschat.dir/chatmain.c.o
+[309/1443] Building C object _deps/gamespy-build/src/qr2/CMakeFiles/gsqr2.dir/qr2regkeys.c.o
+[310/1443] Building C object _deps/gamespy-build/src/gcdkey/CMakeFiles/gscdkey.dir/gcdkeyc.c.o
+[311/1443] Building C object _deps/gamespy-build/src/qr/CMakeFiles/gsqr.dir/gqueryreporting.c.o
+[312/1443] Building C object _deps/gamespy-build/src/natneg/CMakeFiles/gsnatneg.dir/natneg.c.o
+[313/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttpcallbacks.c.o
+[314/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttpcommon.c.o
+[315/1443] Building C object _deps/gamespy-build/src/qr2/CMakeFiles/gsqr2.dir/qr2.c.o
+[316/1443] Building C object _deps/gamespy-build/src/chat/CMakeFiles/gschat.dir/chathandlers.c.o
+[317/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttpbuffer.c.o
+[318/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttpconnection.c.o
+[319/1443] Building C object _deps/sdl3_image-build/CMakeFiles/SDL3_image-shared.dir/src/IMG_stb.c.o
+[320/1443] Building C object _deps/gamespy-build/src/gcdkey/CMakeFiles/gscdkey.dir/gcdkeys.c.o
+[321/1443] Linking C shared library _deps/sdl3_image-build/libSDL3_image.so
+[322/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/gssoap.c.o
+[323/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttpmain.c.o
+[324/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2buffer.c.o
+[325/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttpprocess.c.o
+[326/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2auth.c.o
+[327/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2callback.c.o
+[328/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gsudpengine.c.o
+[329/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttppost.c.o
+[330/1443] Building C object _deps/gamespy-build/src/ghttp/CMakeFiles/gshttp.dir/ghttpencryption.c.o
+[331/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2connection.c.o
+[332/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2filter.c.o
+[333/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2main.c.o
+[334/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2encode.c.o
+[335/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2utility.c.o
+[336/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2socket.c.o
+[337/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpibuddy.c.o
+[338/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpibuffer.c.o
+[339/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpi.c.o
+[340/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpicallback.c.o
+[341/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpikeys.c.o
+[342/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpiconnect.c.o
+[343/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpiinfo.c.o
+[344/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpips3.c.o
+[345/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpioperation.c.o
+[346/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpipeer.c.o
+[347/1443] Building C object _deps/gamespy-build/src/gt2/CMakeFiles/gsgt2.dir/gt2message.c.o
+[348/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpiunique.c.o
+[349/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpiprofile.c.o
+[350/1443] Building C object _deps/gamespy-build/src/gstats/CMakeFiles/gsgstats.dir/gbucket.c.o
+[351/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpisearch.c.o
+[352/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpiutility.c.o
+[353/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gp.c.o
+[354/1443] Building C object _deps/gamespy-build/src/serverbrowsing/CMakeFiles/gsserverbrowsing.dir/sb_crypt.c.o
+[355/1443] Building C object _deps/gamespy-build/src/pinger/CMakeFiles/gspinger.dir/pingermain.c.o
+[356/1443] Building C object _deps/gamespy-build/src/gp/CMakeFiles/gsgp.dir/gpitransfer.c.o
+[357/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerautomatch.c.o
+[358/1443] Building C object _deps/gamespy-build/src/serverbrowsing/CMakeFiles/gsserverbrowsing.dir/sb_serverbrowsing.c.o
+[359/1443] Building C object _deps/gamespy-build/src/serverbrowsing/CMakeFiles/gsserverbrowsing.dir/sb_queryengine.c.o
+[360/1443] Building C object _deps/gamespy-build/src/serverbrowsing/CMakeFiles/gsserverbrowsing.dir/sb_server.c.o
+[361/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerhost.c.o
+[362/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerglobalcallbacks.c.o
+[363/1443] Building C object _deps/gamespy-build/src/gstats/CMakeFiles/gsgstats.dir/gstats.c.o
+[364/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerkeys.c.o
+[365/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peermangle.c.o
+[366/1443] Building C object _deps/gamespy-build/src/serverbrowsing/CMakeFiles/gsserverbrowsing.dir/sb_serverlist.c.o
+[367/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerplayers.c.o
+[368/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peercallbacks.c.o
+[369/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peermain.c.o
+[370/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerqr.c.o
+[371/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peersb.c.o
+[372/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerping.c.o
+[373/1443] Building C object _deps/gamespy-build/src/pt/CMakeFiles/gspt.dir/ptmain.c.o
+[374/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peerrooms.c.o
+[375/1443] Building C object _deps/gamespy-build/src/peer/CMakeFiles/gspeer.dir/peeroperations.c.o
+[376/1443] Building C object _deps/gamespy-build/src/sake/CMakeFiles/gssake.dir/sakemain.c.o
+[377/1443] Building C object _deps/gamespy-build/src/sake/CMakeFiles/gssake.dir/sakerequestmisc.c.o
+[378/1443] Building C object _deps/gamespy-build/src/sake/CMakeFiles/gssake.dir/sakerequest.c.o
+[379/1443] Building C object _deps/gamespy-build/src/sake/CMakeFiles/gssake.dir/sakerequestmodify.c.o
+[380/1443] Building C object _deps/gamespy-build/src/sake/CMakeFiles/gssake.dir/sakerequestread.c.o
+[381/1443] Building C object _deps/gamespy-build/src/sc/CMakeFiles/gssc.dir/sciinterface.c.o
+[382/1443] Building C object _deps/gamespy-build/src/sc/CMakeFiles/gssc.dir/sciserialize.c.o
+[383/1443] Building C object _deps/gamespy-build/src/sc/CMakeFiles/gssc.dir/scimain.c.o
+[384/1443] Building C object _deps/gamespy-build/src/sc/CMakeFiles/gssc.dir/scireport.c.o
+[385/1443] Building C object _deps/gamespy-build/src/webservices/CMakeFiles/gswebservices.dir/authservice.c.o
+[386/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/althrd_setname.cpp.o
+[387/1443] Building C object _deps/gamespy-build/src/sc/CMakeFiles/gssc.dir/sciwebservices.c.o
+[388/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/filesystem.cpp.o
+[389/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/dynload.cpp.o
+[390/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/alstring.cpp.o
+[391/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/alsem.cpp.o
+[392/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/alassert.cpp.o
+[393/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/alcomplex.cpp.o
+[394/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/polyphase_resampler.cpp.o
+[395/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/ringbuffer.cpp.o
+[396/1443] Building CXX object _deps/openal_soft-build/fmt-11.1.1/CMakeFiles/alsoft.fmt.dir/src/os.cc.o
+[397/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/strutils.cpp.o
+[398/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/alsoft.common.dir/common/pffft.cpp.o
+[399/1443] Checking the git repository for changes...
+[400/1443] Building CXX object resources/CMakeFiles/resources.dir/gitinfo.cpp.o
+[401/1443] Linking CXX static library resources/libresources.a
+[402/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/cmake_pch.hxx.pch
+[403/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/btreeabout.cpp.o
+[404/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/huffabout.cpp.o
+[405/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/CompressionManager.cpp.o
+/home/runner/work/zh-mobile/zh-mobile/Core/Libraries/Source/Compression/CompressionManager.cpp:133:10: warning: enumeration value 'COMPRESSION_MIN' not handled in switch [-Wswitch]
+  133 |         switch (compType)
+      |                 ^~~~~~~~
+/home/runner/work/zh-mobile/zh-mobile/Core/Libraries/Source/Compression/CompressionManager.cpp:163:10: warning: enumeration value 'COMPRESSION_MIN' not handled in switch [-Wswitch]
+  163 |         switch (compType)
+      |                 ^~~~~~~~
+2 warnings generated.
+[406/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/btreedecode.cpp.o
+[407/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/refdecode.cpp.o
+[408/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/refabout.cpp.o
+[409/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/huffdecode.cpp.o
+[410/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/LZHCompress/NoxCompress.cpp.o
+[411/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/refencode.cpp.o
+[412/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/btreeencode.cpp.o
+[413/1443] Building CXX object Core/Libraries/Source/Compression/CMakeFiles/core_compression.dir/EAC/huffencode.cpp.o
+[414/1443] Linking CXX static library Core/Libraries/Source/Compression/libcompression.a
+[415/1443] Building CXX object _deps/openal_soft-build/fmt-11.1.1/CMakeFiles/alsoft.fmt.dir/src/format.cc.o
+[416/1443] Linking CXX static library _deps/openal_soft-build/libalsoft.common.a
+[417/1443] Generating default_hrtf.txt
+[418/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/auxeffectslot.cpp.o
+[419/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/autowah.cpp.o
+[420/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/chorus.cpp.o
+[421/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/debug.cpp.o
+[422/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/convolution.cpp.o
+[423/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/dedicated.cpp.o
+[424/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/buffer.cpp.o
+[425/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/compressor.cpp.o
+[426/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/echo.cpp.o
+[427/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/effects.cpp.o
+[428/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/distortion.cpp.o
+[429/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effect.cpp.o
+[430/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/modulator.cpp.o
+[431/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/reverb.cpp.o
+[432/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/equalizer.cpp.o
+[433/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/null.cpp.o
+[434/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/fshifter.cpp.o
+[435/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/pshifter.cpp.o
+[436/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/effects/vmorpher.cpp.o
+[437/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/error.cpp.o
+[438/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/extension.cpp.o
+[439/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/event.cpp.o
+[440/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/state.cpp.o
+[441/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/listener.cpp.o
+[442/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/filter.cpp.o
+[443/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/alconfig.cpp.o
+[444/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/context.cpp.o
+[445/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/device.cpp.o
+[446/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/alu.cpp.o
+[447/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/chorus.cpp.o
+[448/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/al/source.cpp.o
+[449/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/autowah.cpp.o
+[450/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/compressor.cpp.o
+[451/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/dedicated.cpp.o
+[452/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/echo.cpp.o
+[453/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/distortion.cpp.o
+[454/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/convolution.cpp.o
+[455/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/alc.cpp.o
+[456/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/null.cpp.o
+[457/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/fshifter.cpp.o
+[458/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/equalizer.cpp.o
+[459/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/modulator.cpp.o
+[460/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/pshifter.cpp.o
+[461/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/events.cpp.o
+[462/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/backends/base.cpp.o
+[463/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/backends/loopback.cpp.o
+[464/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/vmorpher.cpp.o
+[465/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/effects/reverb.cpp.o
+[466/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/backends/null.cpp.o
+[467/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/ambidefs.cpp.o
+[468/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/panning.cpp.o
+[469/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/bformatdec.cpp.o
+[470/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/backends/wave.cpp.o
+[471/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/bs2b.cpp.o
+[472/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/ambdec.cpp.o
+[473/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/alc/backends/opensl.cpp.o
+[474/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/buffer_storage.cpp.o
+[475/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/bsinc_tables.cpp.o
+[476/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/cpu_caps.cpp.o
+[477/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/cubic_tables.cpp.o
+[478/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/devformat.cpp.o
+[479/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/except.cpp.o
+[480/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/device.cpp.o
+[481/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/converter.cpp.o
+[482/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/fpu_ctrl.cpp.o
+[483/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/filters/nfc.cpp.o
+[484/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/filters/biquad.cpp.o
+[485/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/context.cpp.o
+[486/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/effectslot.cpp.o
+[487/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/filters/splitter.cpp.o
+[488/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/mastering.cpp.o
+[489/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/logging.cpp.o
+[490/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/uiddefs.cpp.o
+[491/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/storage_formats.cpp.o
+[492/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/helpers.cpp.o
+[493/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/mixer.cpp.o
+[494/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/mixer/mixer_c.cpp.o
+[495/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/mixer/mixer_neon.cpp.o
+[496/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/uhjfilter.cpp.o
+[497/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/voice.cpp.o
+[498/1443] Building CXX object _deps/openal_soft-build/CMakeFiles/OpenAL.dir/core/hrtf.cpp.o
+[499/1443] Linking CXX shared library _deps/openal_soft-build/libopenal.so
+ninja: build stopped: cannot make progress due to previous errors.
