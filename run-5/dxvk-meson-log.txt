@@ -1,0 +1,792 @@
+Build started at 2026-10-08T23:02:19.210395
+Main binary: /usr/bin/python3
+Build Options: -Ddxvk_native_wsi=sdl3 -Denable_dxgi=false -Denable_d3d10=false -Denable_d3d11=false -Dbuildtype=release --cross-file=/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/meson-arm64-android-cross.ini
+Python system: Linux
+The Meson build system
+Version: 1.3.2
+Source dir: /home/runner/work/zh-mobile/zh-mobile/references/fbraz3-dxvk
+Build dir: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android
+Build type: cross build
+Project name: dxvk
+Project version: 2.6.0
+-----------
+Detecting compiler via: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang --version` -> 0
+stdout:
+Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)
+Target: aarch64-unknown-linux-android29
+Thread model: posix
+InstalledDir: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin
+-----------
+Running command: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang -E -dM -
+-----
+-----------
+Detecting linker via: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang -Wl,--version -Wl,-z,max-page-size=16384` -> 0
+stdout:
+LLD 18.0.3 (compatible with GNU linkers)
+-----------
+-----------
+Detecting LLD linker via: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang -Wl,-v -Wl,-z,max-page-size=16384` -> 1
+stdout:
+LLD 18.0.3 (compatible with GNU linkers)
+-----------
+stderr:
+ld.lld: error: undefined symbol: main
+>>> referenced by crtbegin.c
+>>>               /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o:(_start_main)
+>>> referenced by crtbegin.c
+>>>               /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o:(_start_main)
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+-----------
+Sanity testing C compiler: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang
+Is cross compiler: True.
+Sanity check compiler command line: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang sanitycheckc.c -o sanitycheckc_cross.exe -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -c
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+C compiler for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang (clang 18.0.3 "Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)")
+C linker for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang ld.lld 18.0.3
+-----------
+Detecting archiver via: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar --version` -> 0
+stdout:
+LLVM (http://llvm.org/):
+  LLVM version 18.0.3
+  Optimized build.
+-----------
+-----------
+Detecting compiler via: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ --version` -> 0
+stdout:
+Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)
+Target: aarch64-unknown-linux-android29
+Thread model: posix
+InstalledDir: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin
+-----------
+Running command: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ -E -dM -
+-----
+-----------
+Detecting linker via: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ -Wl,--version -Wl,-z,max-page-size=16384` -> 0
+stdout:
+LLD 18.0.3 (compatible with GNU linkers)
+-----------
+-----------
+Detecting LLD linker via: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ -Wl,-v -Wl,-z,max-page-size=16384` -> 1
+stdout:
+LLD 18.0.3 (compatible with GNU linkers)
+-----------
+stderr:
+ld.lld: error: undefined symbol: main
+>>> referenced by crtbegin.c
+>>>               /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o:(_start_main)
+>>> referenced by crtbegin.c
+>>>               /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/lib/aarch64-linux-android/29/crtbegin_dynamic.o:(_start_main)
+clang++: error: linker command failed with exit code 1 (use -v to see invocation)
+-----------
+Sanity testing C++ compiler: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++
+Is cross compiler: True.
+Sanity check compiler command line: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ sanitycheckcpp.cc -o sanitycheckcpp_cross.exe -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -c
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+C++ compiler for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ (clang 18.0.3 "Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)")
+C++ linker for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ ld.lld 18.0.3
+-----------
+Detecting compiler via: `cc --version` -> 0
+stdout:
+cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-----------
+Running command: cc -E -dM -
+-----
+-----------
+Detecting linker via: `cc -Wl,--version` -> 0
+stdout:
+GNU ld (GNU Binutils for Ubuntu) 2.42
+Copyright (C) 2024 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) a later version.
+This program has absolutely no warranty.
+-----------
+stderr:
+collect2 version 13.3.0
+/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/ccVkDf0V.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. --version -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+-----------
+Sanity testing C compiler: cc
+Is cross compiler: False.
+Sanity check compiler command line: cc sanitycheckc.c -o sanitycheckc.exe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/sanitycheckc.exe
+C compiler for the build machine: cc (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C linker for the build machine: cc ld.bfd 2.42
+-----------
+Detecting archiver via: `gcc-ar --version` -> 0
+stdout:
+GNU ar (GNU Binutils for Ubuntu) 2.42
+Copyright (C) 2024 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) any later version.
+This program has absolutely no warranty.
+-----------
+-----------
+Detecting compiler via: `c++ --version` -> 0
+stdout:
+c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+Copyright (C) 2023 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-----------
+Running command: c++ -E -dM -
+-----
+-----------
+Detecting linker via: `c++ -Wl,--version` -> 0
+stdout:
+GNU ld (GNU Binutils for Ubuntu) 2.42
+Copyright (C) 2024 Free Software Foundation, Inc.
+This program is free software; you may redistribute it under the terms of
+the GNU General Public License version 3 or (at your option) a later version.
+This program has absolutely no warranty.
+-----------
+stderr:
+collect2 version 13.3.0
+/usr/bin/ld -plugin /usr/libexec/gcc/x86_64-linux-gnu/13/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-linux-gnu/13/lto-wrapper -plugin-opt=-fresolution=/tmp/cc2TrZIB.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/13 -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/13/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/13/../../.. --version -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/13/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/crtn.o
+-----------
+Sanity testing C++ compiler: c++
+Is cross compiler: False.
+Sanity check compiler command line: c++ sanitycheckcpp.cc -o sanitycheckcpp.exe -D_FILE_OFFSET_BITS=64
+Sanity check compile stdout:
+
+-----
+Sanity check compile stderr:
+
+-----
+Running test binary command:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/sanitycheckcpp.exe
+C++ compiler for the build machine: c++ (gcc 13.3.0 "c++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C++ linker for the build machine: c++ ld.bfd 2.42
+Build machine cpu family: x86_64
+Build machine cpu: x86_64
+Host machine cpu family: aarch64
+Host machine cpu: armv8-a
+Target machine cpu family: aarch64
+Target machine cpu: armv8-a
+Pkg-config binary for host machine specified from cross file, native file, or env var as ['pkg-config']
+Found pkg-config: YES (/usr/bin/pkg-config) 1.8.1
+Determining dependency 'libdisplay-info' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_LIBDIR]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_PATH]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --modversion libdisplay-info` -> 1
+stderr:
+Package libdisplay-info was not found in the pkg-config search path.
+Perhaps you should add the directory containing `libdisplay-info.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'libdisplay-info', required by 'virtual:world', not found
+-----------
+CMake binary for host machine is not cached
+CMake binary missing from cross or native file, or env var undefined.
+Default target is not allowed for cross use
+Found CMake: NO
+CMake binary for machine host machine not found. Giving up.
+Run-time dependency libdisplay-info found: NO (tried pkgconfig and cmake)
+Looking for a fallback subproject for the dependency libdisplay-info
+
+Executing subproject libdisplay-info 
+
+Project name: libdisplay-info
+Project version: 0.0.0
+C compiler for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang (clang 18.0.3 "Android (12470979, +pgo, +bolt, +lto, +mlgo, based on r522817c) clang version 18.0.3 (https://android.googlesource.com/toolchain/llvm-project d8003a456d14a3deb8054cdaa529ffbf02d9b262)")
+C linker for the host machine: /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang ld.lld 18.0.3
+C compiler for the build machine: cc (gcc 13.3.0 "cc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0")
+C linker for the build machine: cc ld.bfd 2.42
+Program tool/gen-search-table.py found: YES (/home/runner/work/zh-mobile/zh-mobile/references/fbraz3-dxvk/subprojects/libdisplay-info/tool/gen-search-table.py)
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp81373mxx
+Code:
+ int main(void) { return 0; }
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp81373mxx/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp81373mxx/output.exe -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Wl,--start-group -lm -Wl,--end-group -Wl,--allow-shlib-undefined -Wl,-z,max-page-size=16384` -> 0
+Library m found: YES
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpgvo7hh7q
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpgvo7hh7q/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpgvo7hh7q/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wundef` -> 0
+Compiler for C supports arguments -Wundef: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp9ewapeu8
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp9ewapeu8/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp9ewapeu8/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmissing-prototypes` -> 0
+Compiler for C supports arguments -Wmissing-prototypes: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmptcx5nvd2
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmptcx5nvd2/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmptcx5nvd2/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Walloca` -> 0
+Compiler for C supports arguments -Walloca: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpkn_7imd2
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpkn_7imd2/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpkn_7imd2/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wdeclaration-after-statement` -> 0
+Compiler for C supports arguments -Wdeclaration-after-statement: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpsj4woxjl
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpsj4woxjl/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpsj4woxjl/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wconversion` -> 0
+Compiler for C supports arguments -Wconversion: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpb7ykwzov
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpb7ykwzov/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpb7ykwzov/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wunused-parameter -Wno-unused-parameter` -> 0
+Compiler for C supports arguments -Wno-unused-parameter: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx1xuy79q
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx1xuy79q/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx1xuy79q/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmissing-field-initializers -Wno-missing-field-initializers` -> 0
+Compiler for C supports arguments -Wno-missing-field-initializers: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpn5luhij3
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpn5luhij3/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpn5luhij3/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Werror=implicit` -> 0
+Compiler for C supports arguments -Werror=implicit: YES 
+Build targets in project: 2
+Subproject libdisplay-info finished.
+
+Dependency libdisplay-info from subproject subprojects/libdisplay-info found: YES 0.0.0
+Program touch found: YES (/usr/bin/touch)
+Determining dependency 'SDL3' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_LIBDIR]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_PATH]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --modversion SDL3` -> 0
+stdout:
+3.4.2
+-----------
+env[PKG_CONFIG_LIBDIR]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_PATH]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --cflags SDL3` -> 0
+stdout:
+-I/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/sdl3-src/include
+-----------
+env[PKG_CONFIG_LIBDIR]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_PATH]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_ALLOW_SYSTEM_LIBS]: 1
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --libs SDL3` -> 0
+stdout:
+-L/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/sdl3-build -lSDL3
+-----------
+env[PKG_CONFIG_LIBDIR]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_PATH]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --libs SDL3` -> 0
+stdout:
+-L/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/sdl3-build -lSDL3
+-----------
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmppdio11fd
+Code:
+ 
+        #include <stddef.h>
+        int main(void) {
+            void * something;
+            return 0;
+        }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmppdio11fd/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmppdio11fd/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpbq1ytimn
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) >= 0)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpbq1ytimn/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpbq1ytimn/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpcaqci3ua
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) > 0)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpcaqci3ua/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpcaqci3ua/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp3swsdmv0
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) > 1)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp3swsdmv0/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp3swsdmv0/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp8y7wcilj
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) > 3)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp8y7wcilj/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp8y7wcilj/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmptoghe99s
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) > 7)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmptoghe99s/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmptoghe99s/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpe_zojqjm
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) > 15)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpe_zojqjm/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpe_zojqjm/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 1
+stderr:
+/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpe_zojqjm/testfile.cpp:3:39: error: 'a' declared as an array with a negative size
+    3 |         int main(void) { static int a[1-2*!(sizeof(void *) > 15)]; a[0]=0; return 0; }
+      |                                       ^~~~~~~~~~~~~~~~~~~~~~~~~~
+1 error generated.
+-----------
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4msfvpge
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) <= 11)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4msfvpge/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4msfvpge/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4bpo3j2f
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) <= 9)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4bpo3j2f/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4bpo3j2f/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4mmrp1td
+Code:
+ 
+        #include <stddef.h>
+        int main(void) { static int a[1-2*!(sizeof(void *) <= 8)]; a[0]=0; return 0; }
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4mmrp1td/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp4mmrp1td/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument` -> 0
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpawbh4qyo
+Code:
+ 
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpawbh4qyo/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpawbh4qyo/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument --print-search-dirs` -> 0
+stdout:
+programs: =/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin
+libraries: =/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/18:/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/lib/clang/18/lib/linux/aarch64:/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/lib/aarch64-linux-android/29:/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/lib/aarch64-linux-android:/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/../sysroot/usr/lib
+-----------
+Run-time dependency sdl3 found: YES 3.4.2
+Determining dependency 'sdl2' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_LIBDIR]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_PATH]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --modversion sdl2` -> 1
+stderr:
+Package sdl2 was not found in the pkg-config search path.
+Perhaps you should add the directory containing `sdl2.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'sdl2', required by 'virtual:world', not found
+-----------
+sdl2-config binary missing from cross or native file, or env var undefined.
+Default target is not allowed for cross use
+sdl2-config found: NO
+CMake binary for host machine is cached as not found
+CMake binary for machine host machine not found. Giving up.
+Run-time dependency sdl2 found: NO (tried pkgconfig, config-tool and cmake)
+Determining dependency 'glfw' with pkg-config executable '/usr/bin/pkg-config'
+env[PKG_CONFIG_LIBDIR]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG_PATH]: /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/sdl3-pkgconfig
+env[PKG_CONFIG]: /usr/bin/pkg-config
+-----------
+Called: `/usr/bin/pkg-config --modversion glfw` -> 1
+stderr:
+Package glfw was not found in the pkg-config search path.
+Perhaps you should add the directory containing `glfw.pc'
+to the PKG_CONFIG_PATH environment variable
+Package 'glfw', required by 'virtual:world', not found
+-----------
+CMake binary for host machine is cached as not found
+CMake binary for machine host machine not found. Giving up.
+Run-time dependency glfw found: NO (tried pkgconfig and cmake)
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpbwr6s48r
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpbwr6s48r/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpbwr6s48r/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -msse` -> 1
+stderr:
+clang++: error: unsupported option '-msse' for target 'aarch64-linux-android29'
+-----------
+Compiler for C++ supports arguments -msse: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp32yvi_02
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp32yvi_02/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp32yvi_02/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -msse2` -> 1
+stderr:
+clang++: error: unsupported option '-msse2' for target 'aarch64-linux-android29'
+-----------
+Compiler for C++ supports arguments -msse2: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmprbp9cwrw
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmprbp9cwrw/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmprbp9cwrw/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -msse3` -> 1
+stderr:
+clang++: error: unsupported option '-msse3' for target 'aarch64-linux-android29'
+-----------
+Compiler for C++ supports arguments -msse3: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpd5c_t_cb
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpd5c_t_cb/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpd5c_t_cb/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -mfpmath=sse` -> 1
+stderr:
+error: unknown FP unit 'sse'
+-----------
+Compiler for C++ supports arguments -mfpmath=sse: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp5rz0i0eu
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp5rz0i0eu/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp5rz0i0eu/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wimplicit-fallthrough` -> 0
+Compiler for C++ supports arguments -Wimplicit-fallthrough: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp93yexaem
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp93yexaem/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp93yexaem/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmissing-field-initializers -Wno-missing-field-initializers` -> 0
+Compiler for C++ supports arguments -Wno-missing-field-initializers: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx05b3upw
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx05b3upw/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx05b3upw/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wunused-parameter -Wno-unused-parameter` -> 0
+Compiler for C++ supports arguments -Wno-unused-parameter: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpggh0bjyl
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpggh0bjyl/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpggh0bjyl/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmisleading-indentation -Wno-misleading-indentation` -> 0
+Compiler for C++ supports arguments -Wno-misleading-indentation: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp3qzsclg3
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp3qzsclg3/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp3qzsclg3/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wcast-function-type -Wno-cast-function-type` -> 0
+Compiler for C++ supports arguments -Wno-cast-function-type: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpz59dlpi7
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpz59dlpi7/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpz59dlpi7/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wunused-private-field -Wno-unused-private-field` -> 0
+Compiler for C++ supports arguments -Wno-unused-private-field: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp04peeb1h
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp04peeb1h/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp04peeb1h/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmicrosoft-exception-spec -Wno-microsoft-exception-spec` -> 0
+Compiler for C++ supports arguments -Wno-microsoft-exception-spec: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp2juqxrtp
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp2juqxrtp/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp2juqxrtp/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wextern-c-compat -Wno-extern-c-compat` -> 0
+Compiler for C++ supports arguments -Wno-extern-c-compat: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpctzpecy4
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpctzpecy4/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpctzpecy4/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wunused-const-variable -Wno-unused-const-variable` -> 0
+Compiler for C++ supports arguments -Wno-unused-const-variable: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpw8z71eh4
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpw8z71eh4/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpw8z71eh4/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmissing-braces -Wno-missing-braces` -> 0
+Compiler for C++ supports arguments -Wno-missing-braces: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp8f51zsh6
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp8f51zsh6/testfile.cpp -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp8f51zsh6/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -fpermissive -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -DDXVK_WSI_SDL3` -> 0
+Compiler for C++ supports arguments -DDXVK_WSI_SDL3: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpsusv97vx
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpsusv97vx/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpsusv97vx/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -msse` -> 1
+stderr:
+clang: error: unsupported option '-msse' for target 'aarch64-linux-android29'
+-----------
+Compiler for C supports arguments -msse: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp9ksm9kbc
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp9ksm9kbc/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp9ksm9kbc/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -msse2` -> 1
+stderr:
+clang: error: unsupported option '-msse2' for target 'aarch64-linux-android29'
+-----------
+Compiler for C supports arguments -msse2: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx0lxqwf7
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx0lxqwf7/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx0lxqwf7/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -msse3` -> 1
+stderr:
+clang: error: unsupported option '-msse3' for target 'aarch64-linux-android29'
+-----------
+Compiler for C supports arguments -msse3: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpix2fatj2
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpix2fatj2/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpix2fatj2/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -mfpmath=sse` -> 1
+stderr:
+error: unknown FP unit 'sse'
+-----------
+Compiler for C supports arguments -mfpmath=sse: NO 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpr1_wiyfq
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpr1_wiyfq/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpr1_wiyfq/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wimplicit-fallthrough` -> 0
+Compiler for C supports arguments -Wimplicit-fallthrough: YES 
+Using cached compile:
+Cached command line:  /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx1xuy79q/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpx1xuy79q/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmissing-field-initializers -Wno-missing-field-initializers 
+
+Code:
+ extern int i;
+int i;
+
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Compiler for C supports arguments -Wno-missing-field-initializers: YES (cached)
+Using cached compile:
+Cached command line:  /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpb7ykwzov/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpb7ykwzov/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wunused-parameter -Wno-unused-parameter 
+
+Code:
+ extern int i;
+int i;
+
+Cached compiler stdout:
+ 
+Cached compiler stderr:
+ 
+Compiler for C supports arguments -Wno-unused-parameter: YES (cached)
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpyuxcvdp7
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpyuxcvdp7/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpyuxcvdp7/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmisleading-indentation -Wno-misleading-indentation` -> 0
+Compiler for C supports arguments -Wno-misleading-indentation: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp5mjwpsey
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp5mjwpsey/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp5mjwpsey/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wcast-function-type -Wno-cast-function-type` -> 0
+Compiler for C supports arguments -Wno-cast-function-type: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpf7dlhex7
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpf7dlhex7/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpf7dlhex7/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wunused-private-field -Wno-unused-private-field` -> 0
+Compiler for C supports arguments -Wno-unused-private-field: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp12wdo7x7
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp12wdo7x7/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmp12wdo7x7/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmicrosoft-exception-spec -Wno-microsoft-exception-spec` -> 0
+Compiler for C supports arguments -Wno-microsoft-exception-spec: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmphzlr5f3d
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmphzlr5f3d/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmphzlr5f3d/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wextern-c-compat -Wno-extern-c-compat` -> 0
+Compiler for C supports arguments -Wno-extern-c-compat: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpmcwfxki9
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpmcwfxki9/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpmcwfxki9/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wunused-const-variable -Wno-unused-const-variable` -> 0
+Compiler for C supports arguments -Wno-unused-const-variable: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpdia_q_cw
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpdia_q_cw/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpdia_q_cw/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -Wmissing-braces -Wno-missing-braces` -> 0
+Compiler for C supports arguments -Wno-missing-braces: YES 
+Running compile:
+Working directory:  /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpjye61wka
+Code:
+ extern int i;
+int i;
+
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpjye61wka/testfile.c -o /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/meson-private/tmpjye61wka/output.obj -c -fPIC -DVK_ENABLE_BETA_EXTENSIONS -D_FILE_OFFSET_BITS=64 -O0 -Werror=implicit-function-declaration -Werror=unknown-warning-option -Werror=unused-command-line-argument -Werror=ignored-optimization-argument -DDXVK_WSI_SDL3` -> 0
+Compiler for C supports arguments -DDXVK_WSI_SDL3: YES 
+Program glslang found: YES (/usr/bin/glslang)
+Configuring buildenv.h using configuration
+Run-time dependency threads found: YES
+Dependency threads found: YES unknown (cached)
+Build targets in project: 11
+
+dxvk 2.6.0
+
+  Subprojects
+    libdisplay-info: YES
+
+  User defined options
+    Cross files    : /home/runner/work/zh-mobile/zh-mobile/build/android-arm64/meson-arm64-android-cross.ini
+    buildtype      : release
+    dxvk_native_wsi: sdl3
+    enable_d3d10   : false
+    enable_d3d11   : false
+    enable_dxgi    : false
+
+Found ninja-1.13.2 at /usr/local/bin/ninja
+Running compile:
+Working directory:  /tmp/tmpos67s2t_
+Code:
+ int i = static_cast<int>(0);
+-----------
+Command line: `/opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android29-clang++ /tmp/tmpos67s2t_/testfile.cpp -o /tmp/tmpos67s2t_/output.obj -D_FILE_OFFSET_BITS=64 -c -std=c++17` -> 0
+Compiler accepts -std=c++17: YES
+!meson_ci!/ci_include "/home/runner/work/zh-mobile/zh-mobile/build/android-arm64/_deps/dxvk-build-android/build.ninja"
