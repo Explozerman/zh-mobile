@@ -127,11 +127,8 @@ if(APPLE AND TARGET dxvk_macos_build)
     add_dependencies(d3dx8 dxvk_macos_build)
     add_dependencies(CompatLib dxvk_macos_build)
 endif()
-# ZH Mobile: on Android the DXVK headers come from the (patched) submodule, which is
-# present at configure time; still order the build so the d3d dlls land in the build dir.
-if(ANDROID AND TARGET dxvk_d3d8_install)
-    add_dependencies(CompatLib dxvk_d3d8_install)
-endif()
+# ZH Mobile: on Android the DXVK headers come from the submodule, present at configure
+# time, so the engine compiles in parallel with the DXVK meson build (no ordering edge).
 
 target_include_directories(CompatLib PUBLIC 
     ${CMAKE_CURRENT_SOURCE_DIR}/Include

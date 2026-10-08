@@ -8,3 +8,9 @@ FetchContent_Declare(
 )
 
 FetchContent_MakeAvailable(gamespy)
+
+# ZH Mobile: bionic (Android libc) has no pthread_cancel. GameSpy only uses it to stop
+# its own helper threads, which never matters on Android (no GameSpy servers either).
+if(ANDROID AND TARGET gscommon)
+    target_compile_definitions(gscommon PRIVATE "pthread_cancel(t)=((void)(t), 0)")
+endif()

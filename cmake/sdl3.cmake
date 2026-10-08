@@ -134,6 +134,12 @@ if(SAGE_USE_SDL3)
     
     FetchContent_MakeAvailable(SDL3_image)
     
+    # ZH Mobile: DXVK (built by meson in cmake/dx8.cmake) needs the SDL3 headers and
+    # library in place before its configure step.
+    if(ANDROID AND TARGET dxvk_android_build AND TARGET SDL3-shared)
+        add_dependencies(dxvk_android_build SDL3-shared)
+    endif()
+
     # Create unified interface library for linking
     add_library(sdl3lib INTERFACE)
     target_link_libraries(sdl3lib INTERFACE SDL3::SDL3 SDL3_image::SDL3_image)

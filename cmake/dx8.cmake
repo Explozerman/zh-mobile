@@ -280,7 +280,8 @@ elseif(ANDROID)
   # pkg-config file for the in-tree SDL3 (see the macOS branch for why this matters:
   # without it meson silently builds no SDL3 WSI and device creation fails).
   set(DXVK_SDL3_PC_DIR "${CMAKE_BINARY_DIR}/sdl3-pkgconfig")
-  file(WRITE "${DXVK_SDL3_PC_DIR}/sdl3.pc"
+  foreach(_pc sdl3.pc SDL3.pc)  # meson asks for "SDL3"; Linux file systems are case-sensitive
+    file(WRITE "${DXVK_SDL3_PC_DIR}/${_pc}"
 "prefix=${CMAKE_BINARY_DIR}/_deps
 libdir=\${prefix}/sdl3-build
 includedir=\${prefix}/sdl3-src/include
@@ -291,6 +292,7 @@ Version: 3.4.2
 Libs: -L\${libdir} -lSDL3
 Cflags: -I\${includedir}
 ")
+  endforeach()
 
   set(DXVK_BUILD_DIR "${CMAKE_BINARY_DIR}/_deps/dxvk-build-android")
   set(DXVK_D3D8_LIB  "${DXVK_BUILD_DIR}/src/d3d8/libdxvk_d3d8.so")
@@ -313,10 +315,7 @@ Cflags: -I\${includedir}
     BUILD_BYPRODUCTS  ${DXVK_D3D8_LIB} ${DXVK_D3D9_LIB}
     UPDATE_DISCONNECTED TRUE
   )
-  # DXVK's SDL3 WSI dlopens SDL at runtime but meson still wants to see it at setup.
-  if(TARGET SDL3-shared)
-    add_dependencies(dxvk_android_build SDL3-shared)
-  endif()
+  # (The SDL3 ordering dependency is added in cmake/sdl3.cmake, once SDL3's target exists.)
 
   add_custom_command(
     OUTPUT  "${CMAKE_BINARY_DIR}/libdxvk_d3d8.so" "${CMAKE_BINARY_DIR}/libdxvk_d3d9.so"
