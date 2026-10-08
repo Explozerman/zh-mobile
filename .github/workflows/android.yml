@@ -1,0 +1,130 @@
+name: Android APK
+
+on:
+  push:
+    branches: [main]
+    paths-ignore: ['**.md', 'docs/**']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: android-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  NDK_VERSION: r27c
+  GRADLE_VERSION: '8.11.1'
+  VCPKG_COMMIT: 533a5fda5c0646d1771345fb572e759283444d5f   # = builtin-baseline in vcpkg.json
+
+jobs:
+  apk:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 180
+    steps:
+      - name: Checkout (with the pinned DXVK fork)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Host tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            ninja-build meson glslang-tools pkg-config nasm yasm \
+            autoconf autoconf-archive automake libtool gperf bison flex
+          meson --version; glslangValidator --version | head -1
+
+      - name: Android NDK
+        id: ndk
+        uses: nttld/setup-ndk@v1
+        with:
+          ndk-version: ${{ env.NDK_VERSION }}
+          add-to-path: false
+
+      - name: vcpkg
+        run: |
+          git clone https://github.com/microsoft/vcpkg "$HOME/vcpkg"
+          git -C "$HOME/vcpkg" checkout ${{ env.VCPKG_COMMIT }} || true
+          "$HOME/vcpkg/bootstrap-vcpkg.sh" -disableMetrics
+          echo "VCPKG_ROOT=$HOME/vcpkg" >> "$GITHUB_ENV"
+
+      - name: vcpkg binary cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/vcpkg/archives
+          key: vcpkg-android-${{ hashFiles('vcpkg.json', 'cmake/triplets/arm64-android-zh.cmake') }}
+          restore-keys: vcpkg-android-
+
+      - name: Configure (CMake preset android-arm64)
+        env:
+          ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
+        run: cmake --preset android-arm64
+
+      - name: Build engine + DXVK
+        env:
+          ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
+        run: |
+          set -o pipefail
+          cmake --build build/android-arm64 --target z_generals dxvk_d3d8_install -- -k 0 2>&1 | tee build.log
+
+      - name: Show first compiler errors
+        if: failure()
+        run: |
+          grep -nE "error:|Error |undefined reference|FAILED:" build.log | head -80 || true
+
+      - name: Stage native libraries + assets
+        env:
+          ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
+        run: |
+          ./scripts/build/android/stage-native-libs.sh build/android-arm64
+          ./scripts/build/android/stage-assets.sh
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: ${{ env.GRADLE_VERSION }}
+
+      - name: Build APK
+        run: |
+          gradle -p android assembleRelease --no-daemon \
+            -PzhVersionCode=${{ github.run_number }} \
+            -PzhVersionName=0.1.${{ github.run_number }}
+          mkdir -p out
+          cp android/app/build/outputs/apk/release/app-release.apk out/zh-mobile-0.1.${{ github.run_number }}.apk
+          ls -la out
+
+      - name: Upload APK artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: zh-mobile-apk
+          path: out/*.apk
+
+      - name: Upload unstripped libraries (for crash symbolication)
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-symbols
+          path: |
+            build/android-arm64/**/libmain.so
+            build/android-arm64/libdxvk_d3d*.so
+          retention-days: 30
+
+      - name: Publish release
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: ZH Mobile 0.1.${{ github.run_number }}
+          prerelease: true
+          files: out/*.apk
+          body: |
+            Test build ${{ github.run_number }} (commit ${{ github.sha }}).
+
+            **RU:** Скачайте APK на телефон и установите. Файлы игры не входят — импортируйте их из своей копии игры через лаунчер.
+            **EN:** Download the APK on your phone and install it. No game data is included — import it from your own copy of the game in the launcher.

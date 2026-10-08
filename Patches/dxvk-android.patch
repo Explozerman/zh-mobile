@@ -1,0 +1,85 @@
+# DXVK Android patch (ZH Mobile)
+#
+# Applied to references/fbraz3-dxvk @46a3bc01 for the Android build:
+#  - SDL3 WSI: size the swapchain in pixels (same fix as the iOS port)
+#  - SDL3 WSI: load libSDL3.so (Android has no versioned sonames)
+#  - meson: no versioned sonames / static libstdc++ on Android (APK packaging)
+# Apply with: git -C references/fbraz3-dxvk apply ../../Patches/dxvk-android.patch
+diff --git a/meson.build b/meson.build
+index 26afed45..e9ded8cf 100644
+--- a/meson.build
++++ b/meson.build
+@@ -137,6 +137,11 @@ else
+     dxvk_version += [ padded ]
+   endforeach
+   dxvk_so_version = {'version': dxvk_abi_version + '.' + dxvk_version[0] + dxvk_version[1] + dxvk_version[2]}
++  if platform == 'android'
++    # Android APKs only package plain lib*.so files and the dynamic linker
++    # resolves DT_NEEDED by that exact name: no versioned sonames.
++    dxvk_so_version = {}
++  endif
+ 
+   wrc           = find_program('touch')
+   wrc_generator = generator(wrc, output : [ '@BASENAME@_ignored.h' ], arguments : [ '@OUTPUT@' ] )
+@@ -166,10 +171,12 @@ else
+   dxvk_name_prefix = 'dxvk_'
+   dxvk_pkg_prefix = 'dxvk-'
+ 
+-  link_args += [
+-    '-static-libgcc',
+-    '-static-libstdc++',
+-  ]
++  if platform != 'android'
++    link_args += [
++      '-static-libgcc',
++      '-static-libstdc++',
++    ]
++  endif
+ endif
+ 
+ dxvk_include_path = include_directories(dxvk_include_dirs)
+diff --git a/src/wsi/sdl3/wsi_platform_sdl3.cpp b/src/wsi/sdl3/wsi_platform_sdl3.cpp
+index 9975cdac..354a3a7b 100644
+--- a/src/wsi/sdl3/wsi_platform_sdl3.cpp
++++ b/src/wsi/sdl3/wsi_platform_sdl3.cpp
+@@ -15,6 +15,9 @@ namespace dxvk::wsi {
+         "SDL3.dll"
+ #elif defined(__APPLE__)
+         "libSDL3.0.dylib"
++#elif defined(__ANDROID__)
++        // Android: CMake never versions sonames and APKs only package lib*.so.
++        "libSDL3.so"
+ #else
+         "libSDL3.so.0"
+ #endif
+diff --git a/src/wsi/sdl3/wsi_platform_sdl3_funcs.h b/src/wsi/sdl3/wsi_platform_sdl3_funcs.h
+index 624c2193..feb5f61a 100644
+--- a/src/wsi/sdl3/wsi_platform_sdl3_funcs.h
++++ b/src/wsi/sdl3/wsi_platform_sdl3_funcs.h
+@@ -9,6 +9,7 @@ SDL_PROC(bool, SDL_GetClosestFullscreenDisplayMode, (SDL_DisplayID, int, int, fl
+ SDL_PROC(SDL_DisplayID, SDL_GetDisplayForWindow, (SDL_Window*))
+ SDL_PROC(SDL_WindowFlags, SDL_GetWindowFlags, (SDL_Window *))
+ SDL_PROC(bool, SDL_GetWindowSize, (SDL_Window*, int*, int*))
++SDL_PROC(bool, SDL_GetWindowSizeInPixels, (SDL_Window*, int*, int*))
+ SDL_PROC(bool, SDL_SetWindowSize, (SDL_Window*, int, int))
+ SDL_PROC(bool, SDL_SetWindowPosition, (SDL_Window*, int, int))
+ SDL_PROC(bool, SDL_SetWindowFullscreen, (SDL_Window*, bool))
+diff --git a/src/wsi/sdl3/wsi_window_sdl3.cpp b/src/wsi/sdl3/wsi_window_sdl3.cpp
+index 10fca478..be0828f5 100644
+--- a/src/wsi/sdl3/wsi_window_sdl3.cpp
++++ b/src/wsi/sdl3/wsi_window_sdl3.cpp
+@@ -22,8 +22,12 @@ namespace dxvk::wsi {
+     int w = 0;
+     int h = 0;
+ 
+-    if (!SDL_GetWindowSize(window, &w, &h))
+-      Logger::err(str::format("SDL3 WSI: SDL_GetWindowSize: ", SDL_GetError()));
++    // Pixels, not points: on high-DPI displays (iOS high-pixel-density windows)
++    // the Metal layer's drawable is scale-factor larger than the logical window.
++    // Sizing the swapchain in points leaves it rendering into a corner of the
++    // surface. Identical to points wherever no scale factor applies.
++    if (!SDL_GetWindowSizeInPixels(window, &w, &h))
++      Logger::err(str::format("SDL3 WSI: SDL_GetWindowSizeInPixels: ", SDL_GetError()));
+ 
+     if (pWidth)
+       *pWidth = uint32_t(w);

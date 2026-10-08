@@ -1,0 +1,71 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Native libraries (libmain.so, libSDL3.so, libdxvk_*.so, ...) are produced by the
+// CMake build (preset android-arm64) and staged into app/jniLibs/arm64-v8a by
+// scripts/build/android/stage-native-libs.sh before Gradle runs.
+def versionCodeProp = project.findProperty('zhVersionCode') ?: '1'
+def versionNameProp = project.findProperty('zhVersionName') ?: '0.1.0-dev'
+
+android {
+    namespace = 'io.github.explozerman.zhmobile'
+    compileSdk = 35
+
+    defaultConfig {
+        applicationId = 'io.github.explozerman.zhmobile'
+        minSdk = 29          // Vulkan 1.1 is mandatory for 64-bit devices from Android 10
+        targetSdk = 35
+        versionCode = versionCodeProp as int
+        versionName = versionNameProp
+        ndk {
+            abiFilters 'arm64-v8a'
+        }
+    }
+
+    signingConfigs {
+        // Fixed sideload key so every new build installs over the previous one
+        // (keeping the 2.5 GB of imported game data). See android/keystore/README.md.
+        sideload {
+            storeFile = file('../keystore/zh-mobile-sideload.jks')
+            storePassword = System.getenv('ZH_KEYSTORE_PASSWORD') ?: 'zhmobile'
+            keyAlias = 'zhmobile'
+            keyPassword = System.getenv('ZH_KEY_PASSWORD') ?: 'zhmobile'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled = false
+            signingConfig = signingConfigs.sideload
+            debuggable = false
+        }
+        debug {
+            signingConfig = signingConfigs.sideload
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['jniLibs']
+        }
+    }
+
+    packaging {
+        jniLibs {
+            // Keep .so files uncompressed + page-aligned: dlopen() of libdxvk_*.so by
+            // name then works straight from the APK.
+            useLegacyPackaging = false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+
+    lint {
+        abortOnError = false
+        checkReleaseBuilds = false
+    }
+}
