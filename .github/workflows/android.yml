@@ -61,7 +61,9 @@ jobs:
       - name: Configure (CMake preset android-arm64)
         env:
           ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
-        run: cmake --preset android-arm64
+        run: |
+          set -o pipefail
+          cmake --preset android-arm64 2>&1 | tee configure.log
 
       - name: Build engine + DXVK
         env:
@@ -70,10 +72,6 @@ jobs:
           set -o pipefail
           cmake --build build/android-arm64 --target z_generals dxvk_d3d8_install -- -k 0 2>&1 | tee build.log
 
-      - name: Show first compiler errors
-        if: failure()
-        run: |
-          grep -nE "error:|Error |undefined reference|FAILED:" build.log | head -80 || true
 
       - name: Stage native libraries + assets
         env:
@@ -98,7 +96,7 @@ jobs:
             -PzhVersionName=0.1.${{ github.run_number }}
           mkdir -p out
           cp android/app/build/outputs/apk/release/app-release.apk out/zh-mobile-0.1.${{ github.run_number }}.apk
-          ls -la out
+          ls -la out 2>&1 | tee gradle-out.log
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
@@ -128,3 +126,30 @@ jobs:
 
             **RU:** Скачайте APK на телефон и установите. Файлы игры не входят — импортируйте их из своей копии игры через лаунчер.
             **EN:** Download the APK on your phone and install it. No game data is included — import it from your own copy of the game in the launcher.
+
+      # The agent working on this port cannot download Actions logs directly, so the
+      # logs (configure, build, failing vcpkg ports) are pushed to the ci-logs branch.
+      - name: Publish CI logs to the ci-logs branch
+        if: always() && github.event_name != 'pull_request'
+        run: |
+          mkdir -p /tmp/ci-logs/run-${{ github.run_number }}
+          D=/tmp/ci-logs/run-${{ github.run_number }}
+          for f in configure.log build.log gradle-out.log; do [ -f "$f" ] && cp "$f" "$D/"; done
+          if [ -f build.log ]; then
+            grep -nE "error:|error [A-Z]|undefined reference|undefined symbol|FAILED:|fatal error" build.log | head -400 > "$D/errors.txt" || true
+          fi
+          # vcpkg port failures keep their own logs in buildtrees
+          if [ -d "$HOME/vcpkg/buildtrees" ]; then
+            find "$HOME/vcpkg/buildtrees" -maxdepth 2 -name "*-err.log" -size +0 -newer configure.log 2>/dev/null \
+              | head -20 | while read -r f; do cp "$f" "$D/vcpkg-$(basename "$(dirname "$f")")-$(basename "$f")"; done || true
+            find "$HOME/vcpkg/buildtrees" -maxdepth 2 -name "*-out.log" -newer configure.log 2>/dev/null \
+              | head -20 | while read -r f; do tail -c 200000 "$f" > "$D/vcpkg-$(basename "$(dirname "$f")")-$(basename "$f")"; done || true
+          fi
+          find build/android-arm64 -path "*dxvk-build-android/meson-logs/meson-log.txt" -exec cp {} "$D/dxvk-meson-log.txt" \; 2>/dev/null || true
+          echo "${{ job.status }} ${{ github.sha }}" > "$D/STATUS"
+          cd /tmp/ci-logs
+          git init -q -b ci-logs
+          git config user.name "zh-mobile-ci"; git config user.email "ci@users.noreply.github.com"
+          git remote add origin "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}.git"
+          git fetch -q --depth 1 origin ci-logs && git reset -q FETCH_HEAD || true
+          git add "run-${{ github.run_number }}" && git commit -qm "logs for run ${{ github.run_number }}" && git push -q origin HEAD:ci-logs
