@@ -18,7 +18,8 @@ endian = 'little'
 needs_exe_wrapper = true
 
 [built-in options]
-c_args = ['-fPIC']
-cpp_args = ['-fPIC']
+# VK_ENABLE_BETA_EXTENSIONS: the fork references VK_KHR_portability_subset (vulkan_beta.h).
+c_args = ['-fPIC', '-DVK_ENABLE_BETA_EXTENSIONS']
+cpp_args = ['-fPIC', '-DVK_ENABLE_BETA_EXTENSIONS']
 cpp_link_args = ['-Wl,-z,max-page-size=16384']
 c_link_args = ['-Wl,-z,max-page-size=16384']

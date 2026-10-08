@@ -39,6 +39,10 @@ project(genzh LANGUAGES C CXX)
 if(UNIX)
     include_directories(${CMAKE_SOURCE_DIR}/Generals/Code/CompatLib/Include)
 endif()
+# ZH Mobile: headers bionic lacks (sys/timeb.h); searched after the system headers.
+if(ANDROID)
+    include_directories(AFTER ${CMAKE_SOURCE_DIR}/cmake/android-shims)
+endif()
 
 # Compiler cache (ccache) – must be included before compilers.cmake so the
 # launcher is registered before CMake finalizes the compiler selection.
