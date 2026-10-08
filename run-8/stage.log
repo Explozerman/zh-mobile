@@ -1,0 +1,9 @@
+  staged libmain.so  <- build/android-arm64/GeneralsMD/Code/Main/libmain.so
+  staged libdxvk_d3d8.so  <- build/android-arm64/libdxvk_d3d8.so
+  staged libdxvk_d3d9.so  <- build/android-arm64/libdxvk_d3d9.so
+  staged libSDL3_image.so  <- build/android-arm64/_deps/sdl3_image-build/libSDL3_image.so
+  staged libSDL3.so  <- build/android-arm64/_deps/sdl3-build/libSDL3.so
+  staged libgamespy.so  <- build/android-arm64/libgamespy.so
+  staged libopenal.so  <- build/android-arm64/_deps/openal_soft-build/libopenal.so
+  staged libc++_shared.so  <- /opt/hostedtoolcache/ndk/r27c/x64/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64-linux-android/libc++_shared.so
+ERROR: libmain.so does not export SDL_main
