@@ -72,12 +72,15 @@ if [[ "${ZH_KEEP_SYMBOLS:-0}" != "1" ]]; then
 fi
 
 # Sanity: libmain must export SDL_main for SDLActivity.nativeRunMain().
-if ! "${READELF}" --dyn-syms "${DEST}/libmain.so" | grep -q " SDL_main$"; then
+# (Capture first: with pipefail, "grep -q" closing the pipe early makes readelf fail.)
+DYNSYMS="$("${READELF}" --dyn-syms --wide "${DEST}/libmain.so")"
+if ! grep -qE "[[:space:]]SDL_main$" <<< "${DYNSYMS}"; then
     echo "ERROR: libmain.so does not export SDL_main" >&2
     exit 1
 fi
 # Sanity: DXVK must have been built with the SDL3 WSI (see playbook: silent SDL2 fallback).
-if ! strings "${DEST}/libdxvk_d3d9.so" | grep -q "Sdl3WsiDriver\|SDL3 WSI"; then
+D3D9_STRINGS="$(strings "${DEST}/libdxvk_d3d9.so")"
+if ! grep -q "Sdl3WsiDriver\|SDL3 WSI" <<< "${D3D9_STRINGS}"; then
     echo "ERROR: libdxvk_d3d9.so was built without the SDL3 WSI" >&2
     exit 1
 fi
