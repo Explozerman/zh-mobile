@@ -19,6 +19,7 @@ CXX_SHARED="${NDK}/toolchains/llvm/prebuilt/linux-x86_64/sysroot/usr/lib/aarch64
 SYSTEM_LIBS=" libc.so libm.so libdl.so liblog.so libandroid.so libvulkan.so libEGL.so libGLESv1_CM.so
  libGLESv2.so libGLESv3.so libOpenSLES.so libaaudio.so libz.so libjnigraphics.so libmediandk.so
  libnativewindow.so libamidi.so libcamera2ndk.so libsync.so libbinder_ndk.so "
+SYSTEM_LIBS=" $(echo ${SYSTEM_LIBS}) "   # collapse newlines so " name " matching works
 
 rm -rf "${DEST}"
 mkdir -p "${DEST}"
