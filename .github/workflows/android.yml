@@ -17,7 +17,6 @@ concurrency:
 env:
   NDK_VERSION: r27c
   GRADLE_VERSION: '8.11.1'
-  VCPKG_COMMIT: 533a5fda5c0646d1771345fb572e759283444d5f   # = builtin-baseline in vcpkg.json
 
 jobs:
   apk:
@@ -46,8 +45,9 @@ jobs:
 
       - name: vcpkg
         run: |
+          # Full clone of current vcpkg: the manifest pins versions via builtin-baseline +
+          # overrides (ffmpeg 8.1.1), whose version-database entries only exist in newer trees.
           git clone https://github.com/microsoft/vcpkg "$HOME/vcpkg"
-          git -C "$HOME/vcpkg" checkout ${{ env.VCPKG_COMMIT }} || true
           "$HOME/vcpkg/bootstrap-vcpkg.sh" -disableMetrics
           echo "VCPKG_ROOT=$HOME/vcpkg" >> "$GITHUB_ENV"
 
