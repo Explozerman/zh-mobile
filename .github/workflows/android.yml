@@ -77,8 +77,9 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
         run: |
-          ./scripts/build/android/stage-native-libs.sh build/android-arm64
-          ./scripts/build/android/stage-assets.sh
+          set -o pipefail
+          ./scripts/build/android/stage-native-libs.sh build/android-arm64 2>&1 | tee stage.log
+          ./scripts/build/android/stage-assets.sh 2>&1 | tee -a stage.log
 
       - uses: actions/setup-java@v4
         with:
@@ -91,9 +92,10 @@ jobs:
 
       - name: Build APK
         run: |
-          gradle -p android assembleRelease --no-daemon \
+          set -o pipefail
+          gradle -p android assembleRelease --no-daemon --console=plain \
             -PzhVersionCode=${{ github.run_number }} \
-            -PzhVersionName=0.1.${{ github.run_number }}
+            -PzhVersionName=0.1.${{ github.run_number }} 2>&1 | tee gradle.log
           mkdir -p out
           cp android/app/build/outputs/apk/release/app-release.apk out/zh-mobile-0.1.${{ github.run_number }}.apk
           ls -la out 2>&1 | tee gradle-out.log
@@ -134,7 +136,7 @@ jobs:
         run: |
           mkdir -p /tmp/ci-logs/run-${{ github.run_number }}
           D=/tmp/ci-logs/run-${{ github.run_number }}
-          for f in configure.log build.log gradle-out.log; do [ -f "$f" ] && cp "$f" "$D/"; done
+          for f in configure.log build.log stage.log gradle.log gradle-out.log; do [ -f "$f" ] && cp "$f" "$D/"; done
           if [ -f build.log ]; then
             grep -nE "error:|error [A-Z]|undefined reference|undefined symbol|FAILED:|fatal error" build.log | head -400 > "$D/errors.txt" || true
           fi
