@@ -1691,7 +1691,11 @@ Type scanType(std::string_view token)
                 #endif
         }
 
-        // TheSuperHackers @info std::from_chars cannot parse "-1" as uint32 so the result needs to be int64 for integers.
+        else
+        {
+	// TheSuperHackers @info std::from_chars cannot parse "-1" as uint32 so the result needs to be int64 for integers.
+	// ZH Mobile: inside "else" so this integer-only path is never instantiated for floats
+	// (libc++ without floating from_chars rejects it even when unreachable).
 	std::conditional_t<std::is_integral_v<Type>, Int64, Type> result{};
 	const auto [ptr, ec] = std::from_chars(token.data(), token.data() + token.size(), result);
 
@@ -1701,6 +1705,7 @@ Type scanType(std::string_view token)
 	}
 
 	return static_cast<Type>(result);
+        }
 }
 
 #endif
