@@ -360,8 +360,38 @@ static void AndroidRedirectStderr(const std::string &logDir)
 	}
 	dup2(s_androidLogFd, STDERR_FILENO);
 	dup2(s_androidLogFd, STDOUT_FILENO);
-	setvbuf(stderr, nullptr, _IONBF, 0);
 	setvbuf(stdout, nullptr, _IONBF, 0);
+
+	// The engine's stdio stderr goes through a filter that drops the per-file loader
+	// traces (thousands of [INI]/[CSF]/[SUBSYS] lines per boot, ~5 MB logs) and caps the
+	// file size; errors are always kept. DXVK and the crash handler write to fd 2 directly.
+	FILE *sink = funopen(nullptr, nullptr,
+		[](void *, const char *buf, int len) -> int {
+			static const size_t kLogCap = 8u * 1024u * 1024u;
+			static size_t written = 0;
+			static const char *const kNoisy[] = { "[INI] ", "[CSF] ", "[SUBSYS] ", "[GX-ISSUE144]" };
+			for (const char *prefix : kNoisy) {
+				const size_t n = strlen(prefix);
+				if ((size_t)len >= n && memcmp(buf, prefix, n) == 0) {
+					return len;
+				}
+			}
+			const bool important = len >= 5 && (memcmp(buf, "ERROR", 5) == 0 || memcmp(buf, "FATAL", 5) == 0 ||
+			                                    memcmp(buf, "WARN", 4) == 0);
+			if (written >= kLogCap && !important) {
+				return len;
+			}
+			ssize_t w = write(STDERR_FILENO, buf, (size_t)len);
+			if (w > 0) written += (size_t)w;
+			return len;
+		},
+		nullptr, nullptr);
+	if (sink != nullptr) {
+		setvbuf(sink, nullptr, _IOLBF, 0);  // whole lines reach the filter
+		stderr = sink;
+	} else {
+		setvbuf(stderr, nullptr, _IONBF, 0);
+	}
 	AndroidInstallCrashHandler();
 }
 
