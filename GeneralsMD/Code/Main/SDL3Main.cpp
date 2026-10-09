@@ -51,10 +51,14 @@
 #include <SDL3/SDL_system.h>
 #include <android/log.h>
 #include <cstdint>
+#include <csignal>
+#include <cxxabi.h>
+#include <dlfcn.h>
+#include <ucontext.h>
+#include <unwind.h>
 #include <cerrno>
 #include <sys/stat.h>
 #include <fcntl.h>
-#include <pthread.h>
 #include <filesystem>
 #include <string>
 #endif
@@ -236,32 +240,111 @@ static void FilterPipeWireOpenAL()
 
 #if defined(__ANDROID__)
 /**
- * Android stderr -> logcat + file mirror.
+ * Android logging + crash reports.
  *
- * App processes have no console: stderr goes nowhere. A pipe thread forwards every
- * engine line to logcat (tag "ZHMobile") and to <external files>/logs/zh-stderr.log,
- * which the launcher can share with one tap. The previous session's log is kept as
- * zh-stderr-prev.log, since a crash or low-memory kill leaves no other evidence.
+ * App processes have no console, so stdout/stderr are pointed straight at
+ * <external files>/logs/zh-stderr.log (unbuffered: every line is on disk before the
+ * next instruction runs, so nothing is lost when the process dies). The previous
+ * session's log is kept as zh-stderr-prev.log. The launcher can save both to Downloads.
+ *
+ * A fatal-signal handler appends the signal, fault address, registers and a
+ * symbolized backtrace (dladdr + demangling) to the same file, then re-raises the
+ * signal so Android still records its own tombstone.
  */
 static int s_androidLogFd = -1;
 static int s_androidRenderScalePercent = 100;  ///< launcher "render resolution" setting
 
-static void *AndroidStderrPump(void *arg)
+struct AndroidBacktraceState {
+	void **cur;
+	void **end;
+};
+
+static _Unwind_Reason_Code AndroidUnwindCallback(struct _Unwind_Context *context, void *arg)
 {
-	const int readFd = (int)(intptr_t)arg;
-	static const size_t kLogCap = 16u * 1024u * 1024u;
-	size_t written = 0;
-	char buf[4096];
-	ssize_t n;
-	while ((n = read(readFd, buf, sizeof(buf) - 1)) > 0) {
-		buf[n] = '\0';
-		__android_log_write(ANDROID_LOG_INFO, "ZHMobile", buf);
-		if (s_androidLogFd >= 0 && written < kLogCap) {
-			ssize_t w = write(s_androidLogFd, buf, (size_t)n);
-			if (w > 0) written += (size_t)w;
+	AndroidBacktraceState *state = static_cast<AndroidBacktraceState *>(arg);
+	uintptr_t pc = _Unwind_GetIP(context);
+	if (pc != 0) {
+		if (state->cur == state->end) {
+			return _URC_END_OF_STACK;
 		}
+		*state->cur++ = reinterpret_cast<void *>(pc);
 	}
-	return nullptr;
+	return _URC_NO_REASON;
+}
+
+static void AndroidLogFrame(int index, void *addr)
+{
+	char line[1024];
+	Dl_info info = {};
+	if (dladdr(addr, &info) != 0 && info.dli_fname != nullptr) {
+		const char *lib = strrchr(info.dli_fname, '/');
+		lib = lib ? lib + 1 : info.dli_fname;
+		const uintptr_t libOffset = (uintptr_t)addr - (uintptr_t)info.dli_fbase;
+		if (info.dli_sname != nullptr) {
+			int status = 0;
+			char *demangled = abi::__cxa_demangle(info.dli_sname, nullptr, nullptr, &status);
+			const char *name = (status == 0 && demangled != nullptr) ? demangled : info.dli_sname;
+			snprintf(line, sizeof(line), "  #%02d pc %08lx  %s  (%s+%lu)\n", index, (unsigned long)libOffset,
+			         lib, name, (unsigned long)((uintptr_t)addr - (uintptr_t)info.dli_saddr));
+			free(demangled);
+		} else {
+			snprintf(line, sizeof(line), "  #%02d pc %08lx  %s\n", index, (unsigned long)libOffset, lib);
+		}
+	} else {
+		snprintf(line, sizeof(line), "  #%02d pc %p  ???\n", index, addr);
+	}
+	write(STDERR_FILENO, line, strlen(line));
+}
+
+static void AndroidCrashHandler(int sig, siginfo_t *info, void *ucontextRaw)
+{
+	char line[512];
+	snprintf(line, sizeof(line), "\nFATAL: signal %d (%s), code %d, fault addr %p\n",
+	         sig, strsignal(sig), info ? info->si_code : 0, info ? info->si_addr : nullptr);
+	write(STDERR_FILENO, line, strlen(line));
+
+#if defined(__aarch64__)
+	const ucontext_t *uc = static_cast<const ucontext_t *>(ucontextRaw);
+	if (uc != nullptr) {
+		void *pc = reinterpret_cast<void *>(uc->uc_mcontext.pc);
+		void *lr = reinterpret_cast<void *>(uc->uc_mcontext.regs[30]);
+		write(STDERR_FILENO, "crash pc / lr:\n", 15);
+		AndroidLogFrame(0, pc);
+		AndroidLogFrame(1, lr);
+	}
+#endif
+
+	void *frames[64];
+	AndroidBacktraceState state = { frames, frames + 64 };
+	_Unwind_Backtrace(AndroidUnwindCallback, &state);
+	write(STDERR_FILENO, "backtrace:\n", 11);
+	for (int i = 0; frames + i < state.cur; ++i) {
+		AndroidLogFrame(i, frames[i]);
+	}
+	write(STDERR_FILENO, "END OF CRASH REPORT\n", 20);
+
+	// Restore the default action and re-raise so Android writes its tombstone too.
+	signal(sig, SIG_DFL);
+	raise(sig);
+}
+
+static void AndroidInstallCrashHandler()
+{
+	// The handler must run even when the crash is a stack overflow.
+	static char altStack[64 * 1024];
+	stack_t ss = {};
+	ss.ss_sp = altStack;
+	ss.ss_size = sizeof(altStack);
+	sigaltstack(&ss, nullptr);
+
+	struct sigaction sa = {};
+	sa.sa_sigaction = AndroidCrashHandler;
+	sa.sa_flags = SA_SIGINFO | SA_ONSTACK;
+	sigemptyset(&sa.sa_mask);
+	const int signals[] = { SIGSEGV, SIGABRT, SIGBUS, SIGFPE, SIGILL, SIGTRAP };
+	for (int sig : signals) {
+		sigaction(sig, &sa, nullptr);
+	}
 }
 
 static void AndroidRedirectStderr(const std::string &logDir)
@@ -270,18 +353,16 @@ static void AndroidRedirectStderr(const std::string &logDir)
 	const std::string logPath = logDir + "/zh-stderr.log";
 	const std::string prevPath = logDir + "/zh-stderr-prev.log";
 	rename(logPath.c_str(), prevPath.c_str());
-	s_androidLogFd = open(logPath.c_str(), O_WRONLY | O_CREAT | O_TRUNC, 0644);
-
-	int fds[2];
-	if (pipe(fds) != 0) {
+	s_androidLogFd = open(logPath.c_str(), O_WRONLY | O_CREAT | O_TRUNC | O_APPEND, 0644);
+	if (s_androidLogFd < 0) {
+		__android_log_print(ANDROID_LOG_ERROR, "ZHMobile", "cannot open %s: %s", logPath.c_str(), strerror(errno));
 		return;
 	}
-	setvbuf(stderr, nullptr, _IOLBF, 0);
-	dup2(fds[1], STDERR_FILENO);
-	pthread_t thread;
-	if (pthread_create(&thread, nullptr, AndroidStderrPump, (void *)(intptr_t)fds[0]) == 0) {
-		pthread_detach(thread);
-	}
+	dup2(s_androidLogFd, STDERR_FILENO);
+	dup2(s_androidLogFd, STDOUT_FILENO);
+	setvbuf(stderr, nullptr, _IONBF, 0);
+	setvbuf(stdout, nullptr, _IONBF, 0);
+	AndroidInstallCrashHandler();
 }
 
 /**
@@ -631,17 +712,20 @@ int main(int argc, char* argv[])
 		TheDebugLogCriticalSection = &critSec5;
 
 		// Initialize memory manager early (required by NEW operator)
+		fprintf(stderr, "INFO: startup: init memory manager\n");
 		initMemoryManager();
 
 		// GeneralsX @bugfix BenderAI 14/02/2026 Initialize Version singleton
 		// GameEngine::init() calls updateWindowTitle() which uses TheVersion
 		// Must be created before GameMain() to avoid nullptr dereference
+		fprintf(stderr, "INFO: startup: create version\n");
 		TheVersion = NEW Version;
 
 		// Parse command line (CommandLine class handles argc/argv internally)
 		// TheSuperHackers @build felipebraz 10/02/2026 Phase 1.5
 		// Store argc/argv for CommandLine parser to access via _NSGetArgc/_NSGetArgv or /proc/self/cmdline
 		// For now, let CommandLine::parseCommandLineForStartup() handle this
+		fprintf(stderr, "INFO: startup: parse command line\n");
 		CommandLine::parseCommandLineForStartup();
 
 		// GeneralsX @bugfix Copilot 17/05/2026 Skip SDL3 window bootstrap for CLI/headless replay execution.
