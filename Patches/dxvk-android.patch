@@ -3,7 +3,7 @@
 # Applied to references/fbraz3-dxvk @46a3bc01 for the Android build:
 #  - SDL3 WSI: size the swapchain in pixels (same fix as the iOS port)
 #  - SDL3 WSI: load libSDL3.so (Android has no versioned sonames)
-#  - SDL3 WSI: log SDL_GetError() when surface creation fails
+#  - SDL3 WSI: log SDL_GetError() and report VK_ERROR_NATIVE_WINDOW_IN_USE_KHR
 #  - meson: no versioned sonames / static libstdc++ on Android (APK packaging)
 # Apply with: git -C references/fbraz3-dxvk apply ../../Patches/dxvk-android.patch
 diff --git a/meson.build b/meson.build
@@ -66,10 +66,19 @@ index 624c2193..feb5f61a 100644
  SDL_PROC(bool, SDL_SetWindowPosition, (SDL_Window*, int, int))
  SDL_PROC(bool, SDL_SetWindowFullscreen, (SDL_Window*, bool))
 diff --git a/src/wsi/sdl3/wsi_window_sdl3.cpp b/src/wsi/sdl3/wsi_window_sdl3.cpp
-index 10fca478..21503b09 100644
+index 10fca478..2c763f27 100644
 --- a/src/wsi/sdl3/wsi_window_sdl3.cpp
 +++ b/src/wsi/sdl3/wsi_window_sdl3.cpp
-@@ -22,8 +22,12 @@ namespace dxvk::wsi {
+@@ -6,6 +6,8 @@
+ #include "wsi_platform_sdl3.h"
+ 
+ #include "../../util/util_string.h"
++
++#include <cstring>
+ #include "../../util/log/log.h"
+ 
+ #include <windows.h>
+@@ -22,8 +24,12 @@ namespace dxvk::wsi {
      int w = 0;
      int h = 0;
  
@@ -84,7 +93,7 @@ index 10fca478..21503b09 100644
  
      if (pWidth)
        *pWidth = uint32_t(w);
-@@ -168,8 +172,12 @@ namespace dxvk::wsi {
+@@ -168,8 +174,19 @@ namespace dxvk::wsi {
            VkSurfaceKHR*             pSurface) {
      SDL_Window* window = fromHwnd(hWindow);
  
@@ -93,8 +102,15 @@ index 10fca478..21503b09 100644
 +    if (SDL_Vulkan_CreateSurface(window, instance, nullptr, pSurface))
 +      return VK_SUCCESS;
 +
-+    // SDL only reports a bool; keep its reason, the VkResult below is a placeholder.
-+    Logger::err(str::format("SDL3 WSI: SDL_Vulkan_CreateSurface failed: ", SDL_GetError()));
++    // SDL only reports a bool. Recover the one result the presenter treats specially:
++    // on Android a native window accepts a single VkSurfaceKHR at a time, and the
++    // presenter defers/retries surface creation on VK_ERROR_NATIVE_WINDOW_IN_USE_KHR.
++    const char* error = SDL_GetError();
++    Logger::err(str::format("SDL3 WSI: SDL_Vulkan_CreateSurface failed: ", error));
++
++    if (error && std::strstr(error, "VK_ERROR_NATIVE_WINDOW_IN_USE_KHR"))
++      return VK_ERROR_NATIVE_WINDOW_IN_USE_KHR;
++
 +    return VK_ERROR_OUT_OF_HOST_MEMORY;
    }
  
