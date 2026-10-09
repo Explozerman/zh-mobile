@@ -4,8 +4,10 @@
 #  - SDL3 WSI: size the swapchain in pixels (same fix as the iOS port)
 #  - SDL3 WSI: load libSDL3.so (Android has no versioned sonames)
 #  - SDL3 WSI: log SDL_GetError() and report VK_ERROR_NATIVE_WINDOW_IN_USE_KHR
+#  - memory: lock the allocation pool for imported/sparse allocations (free-list race)
 #  - meson: no versioned sonames / static libstdc++ on Android (APK packaging)
 # Apply with: git -C references/fbraz3-dxvk apply ../../Patches/dxvk-android.patch
+diff --git a/meson.build b/meson.build
 diff --git a/meson.build b/meson.build
 index 26afed45..e9ded8cf 100644
 --- a/meson.build
@@ -39,6 +41,52 @@ index 26afed45..e9ded8cf 100644
  endif
  
  dxvk_include_path = include_directories(dxvk_include_dirs)
+diff --git a/src/dxvk/dxvk_memory.cpp b/src/dxvk/dxvk_memory.cpp
+index b6a61c6d..0b1e658d 100644
+--- a/src/dxvk/dxvk_memory.cpp
++++ b/src/dxvk/dxvk_memory.cpp
+@@ -1085,7 +1085,13 @@ namespace dxvk {
+     const VkBufferCreateInfo&         createInfo,
+     const DxvkAllocationInfo&         allocationInfo,
+     const DxvkBufferImportInfo&       importInfo) {
+-    Rc<DxvkResourceAllocation> allocation = m_allocationPool.create(this, nullptr);
++    // m_allocationPool is a plain free list guarded by m_mutex everywhere else.
++    // Swapchain images are imported from the presenter path while the app thread
++    // allocates; without the lock both can pop the same slot (seen on Android,
++    // where swapchains are recreated often), corrupting the free list.
++    Rc<DxvkResourceAllocation> allocation;
++    { std::lock_guard<dxvk::mutex> lock(m_mutex);
++      allocation = m_allocationPool.create(this, nullptr); }
+     allocation->m_flags.set(DxvkAllocationFlag::Imported);
+     allocation->m_resourceCookie = allocation->m_resourceCookie;
+     allocation->m_size = createInfo.size;
+@@ -1104,7 +1110,13 @@ namespace dxvk {
+     const VkImageCreateInfo&          createInfo,
+     const DxvkAllocationInfo&         allocationInfo,
+           VkImage                     imageHandle) {
+-    Rc<DxvkResourceAllocation> allocation = m_allocationPool.create(this, nullptr);
++    // m_allocationPool is a plain free list guarded by m_mutex everywhere else.
++    // Swapchain images are imported from the presenter path while the app thread
++    // allocates; without the lock both can pop the same slot (seen on Android,
++    // where swapchains are recreated often), corrupting the free list.
++    Rc<DxvkResourceAllocation> allocation;
++    { std::lock_guard<dxvk::mutex> lock(m_mutex);
++      allocation = m_allocationPool.create(this, nullptr); }
+     allocation->m_flags.set(DxvkAllocationFlag::Imported);
+     allocation->m_resourceCookie = allocation->m_resourceCookie;
+     allocation->m_image = imageHandle;
+@@ -1359,7 +1371,10 @@ namespace dxvk {
+   DxvkResourceAllocation* DxvkMemoryAllocator::createAllocation(
+           DxvkSparsePageTable*  sparsePageTable,
+     const DxvkAllocationInfo&   allocationInfo) {
+-    auto allocation = m_allocationPool.create(this, nullptr);
++    // Called without m_mutex held (unlike the other overloads); see importBufferResource.
++    DxvkResourceAllocation* allocation;
++    { std::lock_guard<dxvk::mutex> lock(m_mutex);
++      allocation = m_allocationPool.create(this, nullptr); }
+     allocation->m_resourceCookie = allocationInfo.resourceCookie;
+     allocation->m_sparsePageTable = sparsePageTable;
+ 
 diff --git a/src/wsi/sdl3/wsi_platform_sdl3.cpp b/src/wsi/sdl3/wsi_platform_sdl3.cpp
 index 9975cdac..354a3a7b 100644
 --- a/src/wsi/sdl3/wsi_platform_sdl3.cpp

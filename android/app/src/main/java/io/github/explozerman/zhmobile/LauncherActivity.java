@@ -220,6 +220,21 @@ public class LauncherActivity extends Activity {
         side.addView(resRow);
         side.addView(text(t("res_hint"), 12, COLOR_MUTED, false));
 
+        TextView introLabel = text(t("intro"), 13, COLOR_MUTED, true);
+        introLabel.setPadding(0, dp(14), 0, 0);
+        side.addView(introLabel);
+        LinearLayout introRow = row();
+        boolean skipIntro = L10n.prefs(this).getBoolean("skipIntro", true);
+        introRow.addView(choice(t("intro_skip"), skipIntro, v -> {
+            L10n.prefs(this).edit().putBoolean("skipIntro", true).apply();
+            recreate();
+        }));
+        introRow.addView(choice(t("intro_show"), !skipIntro, v -> {
+            L10n.prefs(this).edit().putBoolean("skipIntro", false).apply();
+            recreate();
+        }));
+        side.addView(introRow);
+
         side.addView(button(t("help"), false, v -> showText(t("help"), t("help_text"))));
         side.addView(button(t("save_log"), false, v -> saveLog()));
         side.addView(button(t("about"), false, v -> showText(t("about"), t("about_text") + versionLine())));
@@ -307,10 +322,15 @@ public class LauncherActivity extends Activity {
         installBundledGameData();
         int scale = L10n.prefs(this).getInt("scale", 100);
         Intent intent = new Intent(this, GameActivity.class);
-        intent.putExtra(GameActivity.EXTRA_ARGS, new String[] {
-            "-gxlang", L10n.lang(this),
-            "-gxscale", Integer.toString(scale),
-        });
+        java.util.ArrayList<String> args = new java.util.ArrayList<>();
+        args.add("-gxlang");
+        args.add(L10n.lang(this));
+        args.add("-gxscale");
+        args.add(Integer.toString(scale));
+        if (L10n.prefs(this).getBoolean("skipIntro", true)) {
+            args.add("-nologo");  // engine option: skip the EA logo / intro movies
+        }
+        intent.putExtra(GameActivity.EXTRA_ARGS, args.toArray(new String[0]));
         startActivity(intent);
     }
 

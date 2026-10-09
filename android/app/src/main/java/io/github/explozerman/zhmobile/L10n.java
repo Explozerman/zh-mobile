@@ -35,6 +35,9 @@ public final class L10n {
         put("res_hint",
             "Меньше — быстрее и холоднее телефон, больше — чётче картинка.",
             "Lower is faster and cooler, higher is sharper.");
+        put("intro", "Заставка при запуске", "Intro videos");
+        put("intro_skip", "Пропускать", "Skip");
+        put("intro_show", "Показывать", "Show");
         put("save_log", "Сохранить лог в «Загрузки»", "Save log to Downloads");
         put("help", "Как установить игру", "How to install the game");
         put("about", "О программе и лицензии", "About & licenses");
