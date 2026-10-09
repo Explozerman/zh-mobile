@@ -637,6 +637,29 @@ void SDL3GameEngine::update(void)
 		return;
 	}
 #endif
+#if defined(__ANDROID__)
+	// ZH Mobile @bugfix Claude 09/10/2026 Android destroys the window surface when the app
+	// is covered (notification, app switch) and hands SDL a new ANativeWindow on return,
+	// which can arrive after focus is back. Never render without a native window, and let
+	// a new one settle briefly: DXVK then sees VK_ERROR_SURFACE_LOST_KHR on the old
+	// swapchain and rebuilds its surface from the current window.
+	if (m_SDLWindow) {
+		static void *s_lastNativeWindow = nullptr;
+		static Uint64 s_nativeWindowSince = 0;
+		void *nativeWindow = SDL_GetPointerProperty(SDL_GetWindowProperties(m_SDLWindow),
+			SDL_PROP_WINDOW_ANDROID_WINDOW_POINTER, nullptr);
+		const Uint64 now = SDL_GetTicks();
+		if (nativeWindow != s_lastNativeWindow) {
+			fprintf(stderr, "INFO: lifecycle: native window %p -> %p\n", s_lastNativeWindow, nativeWindow);
+			s_lastNativeWindow = nativeWindow;
+			s_nativeWindowSince = now;
+		}
+		if (nativeWindow == nullptr || now - s_nativeWindowSince < 250) {
+			SDL_Delay(20);
+			return;
+		}
+	}
+#endif
 	GameEngine::update();
 }
 
