@@ -776,8 +776,10 @@ int main(int argc, char* argv[])
 		fprintf(stderr, "INFO: Creating SDL3 Vulkan window...\n");
 		Uint32 windowFlags = SDL_WINDOW_VULKAN | SDL_WINDOW_RESIZABLE | SDL_WINDOW_HIDDEN;  // Start hidden, show after D3D init
 #if defined(__ANDROID__)
-		// Android windows are always fullscreen; ask for the native pixel size.
+		// Android windows are always fullscreen; ask for the native pixel size. Not hidden:
+		// showing it later makes Android recreate the surface right before Vulkan needs it.
 		windowFlags |= SDL_WINDOW_FULLSCREEN | SDL_WINDOW_HIGH_PIXEL_DENSITY;
+		windowFlags &= ~(Uint32)SDL_WINDOW_HIDDEN;
 #endif
 #if defined(TARGET_OS_IPHONE) && TARGET_OS_IPHONE
 		// Request a native-resolution Metal drawable (e.g. 2868x1320 instead of the

@@ -534,6 +534,45 @@ static bool SDL3_GetWindowSizeInPixels(int& outW, int& outH, float& outDensity)
 	return true;
 }
 
+#if defined(__ANDROID__)
+// ZH Mobile @bugfix Claude 09/10/2026 Android: wait for a live native surface before Vulkan uses it.
+// SDL replaces the window's ANativeWindow whenever Android recreates the activity surface
+// (show, system-UI/fullscreen changes, resume). In between, SDL holds no native window and
+// vkCreateAndroidSurfaceKHR gets NULL; Samsung's driver answers VK_ERROR_OUT_OF_HOST_MEMORY,
+// D3D device creation fails and the engine later dereferences the missing device. Pump
+// events until a native window has been present and unchanged for a short settle period.
+static void SDL3_WaitForAndroidSurface(SDL_Window* window, const char* where)
+{
+	if (!window) return;
+	const Uint64 start = SDL_GetTicks();
+	const Uint64 settleMs = 250;
+	const Uint64 timeoutMs = 5000;
+	void* last = nullptr;
+	Uint64 stableSince = 0;
+	for (;;) {
+		SDL_PumpEvents();
+		void* nativeWindow = SDL_GetPointerProperty(SDL_GetWindowProperties(window),
+			SDL_PROP_WINDOW_ANDROID_WINDOW_POINTER, nullptr);
+		const Uint64 now = SDL_GetTicks();
+		if (nativeWindow != last) {
+			last = nativeWindow;
+			stableSince = now;
+		}
+		if (nativeWindow != nullptr && now - stableSince >= settleMs) {
+			fprintf(stderr, "INFO: Android surface ready (%s) after %llu ms\n", where,
+				(unsigned long long)(now - start));
+			return;
+		}
+		if (now - start >= timeoutMs) {
+			fprintf(stderr, "WARNING: Android surface not ready (%s) after %llu ms, native window=%p\n",
+				where, (unsigned long long)(now - start), nativeWindow);
+			return;
+		}
+		SDL_Delay(10);
+	}
+}
+#endif
+
 // GeneralsX @bugfix GitHub Copilot 28/04/2026 Ensure SDL3 fullscreen transition actually lands in native fullscreen and foreground.
 static void SDL3_EnsureNativeFullscreen(SDL_Window* window)
 {
@@ -558,6 +597,15 @@ static void SDL3_ApplyWindowModeForRenderConfig(Bool windowed, Int renderWidth, 
 {
 	extern SDL_Window* TheSDL3Window;
 	if (!TheSDL3Window) return;
+
+#if defined(__ANDROID__)
+	// ZH Mobile @bugfix Claude 09/10/2026 Android windows are always fullscreen at the panel
+	// size (the render resolution is scaled by DXVK). Toggling fullscreen here only makes
+	// Android recreate the surface under Vulkan's feet, so leave the window alone.
+	(void)windowed; (void)renderWidth; (void)renderHeight;
+	SDL3_WaitForAndroidSurface(TheSDL3Window, "window mode");
+	return;
+#endif
 
 	if (!windowed) {
 		if (!SDL_SetWindowFullscreen(TheSDL3Window, false)) {
@@ -956,6 +1004,9 @@ void W3DDisplay::init()
 		if (TheSDL3Window) {
 			fprintf(stderr, "DEBUG: Showing SDL3 window after WW3D init...\n");
 			SDL_ShowWindow(TheSDL3Window);
+			#if defined(__ANDROID__)
+			SDL3_WaitForAndroidSurface(TheSDL3Window, "show window");
+			#endif
 		}
 		#endif
 
