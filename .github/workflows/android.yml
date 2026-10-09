@@ -16,6 +16,9 @@ concurrency:
 
 env:
   NDK_VERSION: r27c
+  # Precompiled headers + ccache need these to get cache hits across runs.
+  CCACHE_SLOPPINESS: pch_defines,time_macros,include_file_ctime,include_file_mtime
+  CCACHE_COMPILERCHECK: content
   GRADLE_VERSION: '8.11.1'
 
 jobs:
@@ -58,6 +61,12 @@ jobs:
           key: vcpkg-android-${{ hashFiles('vcpkg.json', 'cmake/triplets/arm64-android-zh.cmake') }}
           restore-keys: vcpkg-android-
 
+      - name: Compiler cache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: android-arm64
+          max-size: 3G
+
       - name: Configure (CMake preset android-arm64)
         env:
           ANDROID_NDK_HOME: ${{ steps.ndk.outputs.ndk-path }}
@@ -89,6 +98,9 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
         with:
           gradle-version: ${{ env.GRADLE_VERSION }}
+          # The build tree contains SDL's sample android-project with its own wrapper jar;
+          # we never run any wrapper (plain "gradle" is used), so skip the validation.
+          validate-wrappers: false
 
       - name: Build APK
         run: |
