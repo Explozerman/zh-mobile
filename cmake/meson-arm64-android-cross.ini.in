@@ -21,5 +21,7 @@ needs_exe_wrapper = true
 # VK_ENABLE_BETA_EXTENSIONS: the fork references VK_KHR_portability_subset (vulkan_beta.h).
 c_args = ['-fPIC', '-DVK_ENABLE_BETA_EXTENSIONS']
 cpp_args = ['-fPIC', '-DVK_ENABLE_BETA_EXTENSIONS']
-cpp_link_args = ['-Wl,-z,max-page-size=16384']
+# Static libc++: each native library carries its own copy, so no C++ heap objects
+# ever cross a library boundary (DXVK talks to the game through COM interfaces only).
+cpp_link_args = ['-Wl,-z,max-page-size=16384', '-static-libstdc++']
 c_link_args = ['-Wl,-z,max-page-size=16384']
