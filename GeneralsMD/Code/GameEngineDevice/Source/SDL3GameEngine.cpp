@@ -104,6 +104,20 @@ static inline bool iosShouldPauseRendering()
 
 static bool SDLCALL iosLifecycleWatcher(void *userdata, SDL_Event *event)
 {
+#if defined(__ANDROID__)
+	// Lifecycle breadcrumbs: suspend/resume problems are otherwise invisible in logs.
+	switch (event->type) {
+		case SDL_EVENT_WILL_ENTER_BACKGROUND: fprintf(stderr, "INFO: lifecycle: will enter background\n"); break;
+		case SDL_EVENT_DID_ENTER_BACKGROUND:  fprintf(stderr, "INFO: lifecycle: did enter background\n"); break;
+		case SDL_EVENT_WILL_ENTER_FOREGROUND: fprintf(stderr, "INFO: lifecycle: will enter foreground\n"); break;
+		case SDL_EVENT_DID_ENTER_FOREGROUND:  fprintf(stderr, "INFO: lifecycle: did enter foreground\n"); break;
+		case SDL_EVENT_WINDOW_FOCUS_LOST:     fprintf(stderr, "INFO: lifecycle: focus lost\n"); break;
+		case SDL_EVENT_WINDOW_FOCUS_GAINED:   fprintf(stderr, "INFO: lifecycle: focus gained\n"); break;
+		case SDL_EVENT_LOW_MEMORY:            fprintf(stderr, "WARNING: lifecycle: low memory\n"); break;
+		case SDL_EVENT_TERMINATING:           fprintf(stderr, "INFO: lifecycle: terminating\n"); break;
+		default: break;
+	}
+#endif
 	switch (event->type) {
 		case SDL_EVENT_WILL_ENTER_BACKGROUND:
 		case SDL_EVENT_DID_ENTER_BACKGROUND:
@@ -148,25 +162,37 @@ struct TouchState {
 		IDLE,        // no fingers tracked
 		PENDING,     // finger1 down, gesture identity not yet known, nothing sent
 		DRAGGING,    // finger1 drag in progress, LMB held
-		LONGPRESSED, // long-press fired (RMB click sent), swallow until lift
-		PAN          // two-finger camera pan, RMB held
+		LONGPRESSED, // long-press fired (RMB click sent); a later drag still starts a box
+		TWO_PENDING, // two fingers down, pan vs. pinch not decided yet, nothing sent
+		PAN,         // two-finger camera pan, RMB held
+		ZOOM         // two-finger pinch, wheel steps only
 	};
 
 	Phase phase = IDLE;
 	SDL_FingerID finger1 = 0;
 	SDL_FingerID finger2 = 0;
-	float downX = 0.0f, downY = 0.0f;   // finger1 down position (window points)
+	float downX = 0.0f, downY = 0.0f;   // finger1 down position (window units)
 	float lastX = 0.0f, lastY = 0.0f;   // finger1 latest position
 	float panX = 0.0f, panY = 0.0f;     // pan centroid
+	float startCX = 0.0f, startCY = 0.0f; // centroid when the second finger landed
+	float startDist = 0.0f;             // finger distance when the second finger landed
 	float pinchDist = 0.0f;             // finger distance at last wheel step
 	Uint64 downTicks = 0;
 	float f1x = 0.0f, f1y = 0.0f, f2x = 0.0f, f2y = 0.0f; // normalized per finger
+
+	// A tap's button-up is delivered one frame after its button-down. Parts of the
+	// 2003 UI (notably the radar/minimap) poll button state once per frame, and a
+	// down+up pair inside one frame never shows up there as "pressed".
+	int pendingUpFrames = 0;
+	Uint8 pendingUpButton = 0;
+	float pendingUpX = 0.0f, pendingUpY = 0.0f;
 };
 
 TouchState s_touch;
 
-const Uint64 LONG_PRESS_MS = 600;
+const Uint64 LONG_PRESS_MS = 700;
 const float PINCH_STEP_RATIO = 0.06f;  // 6% distance change per wheel tick
+const float PINCH_DECIDE_RATIO = 0.10f;  // 10% distance change before a pan moved => zoom
 const float TAP_DEAD_ZONE_PX = 8.0f;   // jitter below this keeps a tap a tap
 
 // Window units differ per platform (iOS: points, Android: physical pixels), so the
@@ -215,17 +241,59 @@ void sendSyntheticMouse(SDL3Mouse *mouse, SDL_Window *window, Uint32 type,
 	mouse->addSDLEvent(&ev);
 }
 
-void beginPan(SDL3Mouse *mouse, SDL_Window *window, int winW, int winH)
+void flushPendingUp(SDL3Mouse *mouse, SDL_Window *window)
 {
-	s_touch.panX = (s_touch.f1x + s_touch.f2x) * 0.5f * (float)winW;
-	s_touch.panY = (s_touch.f1y + s_touch.f2y) * 0.5f * (float)winH;
+	if (s_touch.pendingUpFrames > 0) {
+		sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_UP,
+		                   s_touch.pendingUpX, s_touch.pendingUpY, s_touch.pendingUpButton);
+		s_touch.pendingUpFrames = 0;
+	}
+}
+
+// Full click at (x, y): motion + down now, up on the next frame.
+void sendClick(SDL3Mouse *mouse, SDL_Window *window, float x, float y, Uint8 button)
+{
+	flushPendingUp(mouse, window);
+	sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, x, y);
+	sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_DOWN, x, y, button);
+	// Released by the frame tick after the next one: the tick of the current frame runs
+	// right after this event batch, so 2 means "one full engine frame later".
+	s_touch.pendingUpFrames = 2;
+	s_touch.pendingUpButton = button;
+	s_touch.pendingUpX = x;
+	s_touch.pendingUpY = y;
+}
+
+void centroid(int winW, int winH, float &cx, float &cy, float &dist)
+{
+	cx = (s_touch.f1x + s_touch.f2x) * 0.5f * (float)winW;
+	cy = (s_touch.f1y + s_touch.f2y) * 0.5f * (float)winH;
 	const float dx = (s_touch.f1x - s_touch.f2x) * (float)winW;
 	const float dy = (s_touch.f1y - s_touch.f2y) * (float)winH;
-	s_touch.pinchDist = SDL_sqrtf(dx * dx + dy * dy);
-	sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, s_touch.panX, s_touch.panY);
+	dist = SDL_sqrtf(dx * dx + dy * dy);
+}
+
+// Second finger landed: remember where, but send nothing until the gesture shows
+// whether it is a camera pan (fingers move together) or a pinch zoom (they spread).
+void beginTwoFinger(int winW, int winH)
+{
+	centroid(winW, winH, s_touch.startCX, s_touch.startCY, s_touch.startDist);
+	s_touch.panX = s_touch.startCX;
+	s_touch.panY = s_touch.startCY;
+	s_touch.pinchDist = s_touch.startDist;
+	s_touch.phase = TouchState::TWO_PENDING;
+}
+
+void beginDragBox(SDL3Mouse *mouse, SDL_Window *window)
+{
+	// Anchor the LMB at the original touch point so the box starts where the finger
+	// landed. The motion to the current position follows with the next finger event,
+	// i.e. in a later frame than the button-down, which the engine's drag detection needs.
+	flushPendingUp(mouse, window);
+	sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, s_touch.downX, s_touch.downY);
 	sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_DOWN,
-	                   s_touch.panX, s_touch.panY, SDL_BUTTON_RIGHT);
-	s_touch.phase = TouchState::PAN;
+	                   s_touch.downX, s_touch.downY, SDL_BUTTON_LEFT);
+	s_touch.phase = TouchState::DRAGGING;
 }
 
 void handleTouchEvent(SDL3Mouse *mouse, SDL_Window *window, const SDL_Event &event)
@@ -249,75 +317,89 @@ void handleTouchEvent(SDL3Mouse *mouse, SDL_Window *window, const SDL_Event &eve
 			s_touch.f1x = event.tfinger.x;
 			s_touch.f1y = event.tfinger.y;
 			s_touch.downTicks = SDL_GetTicks();
-			// Move the cursor to the touch point NOW (motion clicks nothing, so the
-			// deferred-tap protection is intact). This lets the GUI process hover
-			// over the next frame(s) before the tap commits — hover-driven widgets
-			// (e.g. the Generals Challenge general buttons, which are checkboxes
-			// that ignore a click unless WIN_STATE_HILITED was set by a prior
-			// mouse-enter) then accept the click. Real mice hover before clicking;
-			// without this, a synthetic tap teleports + clicks in one instant and
-			// the widget is never hilited, so only the default/first item responds.
+			// Move the cursor to the touch point NOW (motion clicks nothing). This lets
+			// the GUI process hover before the tap commits: hover-driven widgets (e.g.
+			// the Generals Challenge general buttons) ignore a click unless a prior
+			// mouse-enter hilited them.
+			flushPendingUp(mouse, window);
 			sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, px, py);
 		}
-		else if (s_touch.phase == TouchState::PENDING) {
-			// Second finger before the first committed to anything: pure pan,
-			// no left-click ever happened.
+		else if (s_touch.phase == TouchState::PENDING || s_touch.phase == TouchState::LONGPRESSED) {
+			// Second finger before the first committed to anything: two-finger
+			// gesture, no left-click ever happened.
 			s_touch.finger2 = event.tfinger.fingerID;
 			s_touch.f2x = event.tfinger.x;
 			s_touch.f2y = event.tfinger.y;
-			beginPan(mouse, window, winW, winH);
+			beginTwoFinger(winW, winH);
 		}
 		else if (s_touch.phase == TouchState::DRAGGING) {
-			// Second finger during a live drag: finish the drag-box, then pan.
+			// Second finger during a live drag: finish the drag-box, then two-finger.
 			s_touch.finger2 = event.tfinger.fingerID;
 			s_touch.f2x = event.tfinger.x;
 			s_touch.f2y = event.tfinger.y;
 			sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_UP,
 			                   s_touch.lastX, s_touch.lastY, SDL_BUTTON_LEFT);
-			beginPan(mouse, window, winW, winH);
+			beginTwoFinger(winW, winH);
 		}
-		// LONGPRESSED / PAN with extra fingers: ignored
+		// PAN / ZOOM / TWO_PENDING with extra fingers: ignored
 		break;
 
-	case SDL_EVENT_FINGER_MOTION:
+	case SDL_EVENT_FINGER_MOTION: {
+		const bool twoFinger = s_touch.phase == TouchState::TWO_PENDING ||
+		                       s_touch.phase == TouchState::PAN || s_touch.phase == TouchState::ZOOM;
 		if (event.tfinger.fingerID == s_touch.finger1) {
 			s_touch.f1x = event.tfinger.x;
 			s_touch.f1y = event.tfinger.y;
 			s_touch.lastX = px;
 			s_touch.lastY = py;
-		} else if (s_touch.phase == TouchState::PAN && event.tfinger.fingerID == s_touch.finger2) {
+		} else if (twoFinger && event.tfinger.fingerID == s_touch.finger2) {
 			s_touch.f2x = event.tfinger.x;
 			s_touch.f2y = event.tfinger.y;
 		} else {
 			break;
 		}
 
-		if (s_touch.phase == TouchState::PENDING && event.tfinger.fingerID == s_touch.finger1) {
+		if ((s_touch.phase == TouchState::PENDING || s_touch.phase == TouchState::LONGPRESSED) &&
+		    event.tfinger.fingerID == s_touch.finger1) {
 			const float moved = SDL_fabsf(px - s_touch.downX) + SDL_fabsf(py - s_touch.downY);
 			if (moved >= tapDeadZone(winW, winH)) {
-				// Commit to a drag: anchor the LMB at the original touch point so
-				// drag-boxes start where the finger first landed.
-				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, s_touch.downX, s_touch.downY);
-				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_DOWN,
-				                   s_touch.downX, s_touch.downY, SDL_BUTTON_LEFT);
-				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, px, py);
-				s_touch.phase = TouchState::DRAGGING;
+				// Also after a long-press: players often rest a finger before dragging
+				// out a selection box; the deselect already happened, now draw the box.
+				beginDragBox(mouse, window);
 			}
 		}
 		else if (s_touch.phase == TouchState::DRAGGING && event.tfinger.fingerID == s_touch.finger1) {
 			sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, px, py);
 		}
-		else if (s_touch.phase == TouchState::PAN) {
-			const float cx = (s_touch.f1x + s_touch.f2x) * 0.5f * (float)winW;
-			const float cy = (s_touch.f1y + s_touch.f2y) * 0.5f * (float)winH;
-			sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, cx, cy);
-			s_touch.panX = cx;
-			s_touch.panY = cy;
+		else if (twoFinger) {
+			float cx, cy, dist;
+			centroid(winW, winH, cx, cy, dist);
 
-			const float dx = (s_touch.f1x - s_touch.f2x) * (float)winW;
-			const float dy = (s_touch.f1y - s_touch.f2y) * (float)winH;
-			const float dist = SDL_sqrtf(dx * dx + dy * dy);
-			if (s_touch.pinchDist > 1.0f) {
+			if (s_touch.phase == TouchState::TWO_PENDING) {
+				const float moved = SDL_fabsf(cx - s_touch.startCX) + SDL_fabsf(cy - s_touch.startCY);
+				const float spread = s_touch.startDist > 1.0f
+					? SDL_fabsf(dist - s_touch.startDist) / s_touch.startDist : 0.0f;
+				if (spread >= PINCH_DECIDE_RATIO) {
+					s_touch.phase = TouchState::ZOOM;
+					s_touch.pinchDist = s_touch.startDist;
+					sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, cx, cy);
+				} else if (moved >= tapDeadZone(winW, winH) * 1.5f) {
+					// Camera scroll is a right-button drag in this engine.
+					sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, s_touch.startCX, s_touch.startCY);
+					sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_DOWN,
+					                   s_touch.startCX, s_touch.startCY, SDL_BUTTON_RIGHT);
+					s_touch.phase = TouchState::PAN;
+				}
+			}
+
+			if (s_touch.phase == TouchState::PAN) {
+				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, cx, cy);
+				s_touch.panX = cx;
+				s_touch.panY = cy;
+			}
+			else if (s_touch.phase == TouchState::ZOOM && s_touch.pinchDist > 1.0f) {
+				// Wheel steps without any button held: the engine ignores the wheel
+				// during a right-button camera drag, so zoom never mixes with pan.
 				const float ratio = dist / s_touch.pinchDist;
 				if (ratio > 1.0f + PINCH_STEP_RATIO) {
 					sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_WHEEL, cx, cy, 0, 1.0f);
@@ -329,27 +411,26 @@ void handleTouchEvent(SDL3Mouse *mouse, SDL_Window *window, const SDL_Event &eve
 			}
 		}
 		break;
+	}
 
 	case SDL_EVENT_FINGER_UP:
-	case SDL_EVENT_FINGER_CANCELED:
+	case SDL_EVENT_FINGER_CANCELED: {
+		const bool twoFinger = s_touch.phase == TouchState::TWO_PENDING ||
+		                       s_touch.phase == TouchState::PAN || s_touch.phase == TouchState::ZOOM;
 		if (event.tfinger.fingerID != s_touch.finger1 &&
-		    !(s_touch.phase == TouchState::PAN && event.tfinger.fingerID == s_touch.finger2)) {
+		    !(twoFinger && event.tfinger.fingerID == s_touch.finger2)) {
 			break;
 		}
 		switch (s_touch.phase) {
 			case TouchState::PENDING:
-				// A CANCELED touch (incoming call, notification shade, palm
-				// rejection) must not become a committed tap — that would be a
-				// phantom select/command/rally-point click at the cancel point.
+				// A CANCELED touch (incoming call, notification shade, palm rejection)
+				// must not become a committed tap — that would be a phantom
+				// select/command/rally-point click at the cancel point.
 				if (event.type == SDL_EVENT_FINGER_CANCELED) {
 					break;
 				}
-				// Clean tap: deliver the full click at the exact press position.
-				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, s_touch.downX, s_touch.downY);
-				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_DOWN,
-				                   s_touch.downX, s_touch.downY, SDL_BUTTON_LEFT);
-				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_UP,
-				                   s_touch.downX, s_touch.downY, SDL_BUTTON_LEFT);
+				// Clean tap: the full click at the exact press position.
+				sendClick(mouse, window, s_touch.downX, s_touch.downY, SDL_BUTTON_LEFT);
 				break;
 			case TouchState::DRAGGING:
 				sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_UP, px, py, SDL_BUTTON_LEFT);
@@ -364,21 +445,24 @@ void handleTouchEvent(SDL3Mouse *mouse, SDL_Window *window, const SDL_Event &eve
 		s_touch.phase = TouchState::IDLE;
 		break;
 	}
+	}
 }
 
 // Called once per engine frame (not just per touch event): a perfectly
 // stationary finger produces no SDL events, so the long-press timer must be
-// polled from the frame loop or it would never fire.
+// polled from the frame loop or it would never fire. Also releases the button
+// of the previous frame's tap.
 void updateTouchLongPress(SDL3Mouse *mouse, SDL_Window *window)
 {
+	if (s_touch.pendingUpFrames > 0 && --s_touch.pendingUpFrames == 0) {
+		s_touch.pendingUpFrames = 1;  // let flushPendingUp() send it
+		flushPendingUp(mouse, window);
+	}
+
 	if (s_touch.phase == TouchState::PENDING &&
 	    (SDL_GetTicks() - s_touch.downTicks) >= LONG_PRESS_MS) {
 		// No LMB was sent yet (deferred), so this is a pure right-click.
-		sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_MOTION, s_touch.downX, s_touch.downY);
-		sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_DOWN,
-		                   s_touch.downX, s_touch.downY, SDL_BUTTON_RIGHT);
-		sendSyntheticMouse(mouse, window, SDL_EVENT_MOUSE_BUTTON_UP,
-		                   s_touch.downX, s_touch.downY, SDL_BUTTON_RIGHT);
+		sendClick(mouse, window, s_touch.downX, s_touch.downY, SDL_BUTTON_RIGHT);
 		s_touch.phase = TouchState::LONGPRESSED;
 	}
 }

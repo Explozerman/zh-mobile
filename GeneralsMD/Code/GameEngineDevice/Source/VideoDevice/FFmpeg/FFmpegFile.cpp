@@ -21,9 +21,9 @@ FFmpegFile::~FFmpegFile()
 
 bool FFmpegFile::open(File *file)
 {
-#if LOGGING_LEVEL != LOGLEVEL_NONE
-    av_log_set_level(AV_LOG_INFO);
-#endif
+    // ZH Mobile @tweak Claude 09/10/2026 Errors only: swscale's per-frame "No accelerated
+    // colorspace conversion" notice filled device logs with thousands of lines per video.
+    av_log_set_level(AV_LOG_ERROR);
 
 // This is required for FFmpeg older than 4.0 -> deprecated afterwards though
 #if LIBAVFORMAT_VERSION_MAJOR < 58

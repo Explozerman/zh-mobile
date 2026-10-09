@@ -476,7 +476,9 @@ static void AndroidPrepareEnvironment(const std::string &lang)
 	const std::string cacheDir = internalDir + "/../cache";
 	mkdir(cacheDir.c_str(), 0755);
 	setenv("DXVK_STATE_CACHE_PATH", cacheDir.c_str(), 0);
-	setenv("DXVK_LOG_LEVEL", "warn", 0);
+	// "error": d3d8 warns about an unimplemented render state on every draw call
+	// (200k+ lines in a 20-minute match); real problems are logged as errors.
+	setenv("DXVK_LOG_LEVEL", "error", 0);
 	setenv("DXVK_LOG_PATH", "none", 0);
 	if (AndroidFileExists(gameData + "/dxvk.conf")) {
 		setenv("DXVK_CONFIG_FILE", (gameData + "/dxvk.conf").c_str(), 0);
