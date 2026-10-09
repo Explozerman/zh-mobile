@@ -160,6 +160,13 @@ jobs:
               | head -20 | while read -r f; do tail -c 200000 "$f" > "$D/vcpkg-$(basename "$(dirname "$f")")-$(basename "$f")"; done || true
           fi
           find build/android-arm64 -path "*dxvk-build-android/meson-logs/meson-log.txt" -exec cp {} "$D/dxvk-meson-log.txt" \; 2>/dev/null || true
+          # Symbol maps for the shipped (stripped) libraries, to resolve device crash
+          # backtraces (libname + offset) without downloading artifacts.
+          NM="${{ steps.ndk.outputs.ndk-path }}/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-nm"
+          for lib in build/android-arm64/libdxvk_d3d9.so build/android-arm64/libdxvk_d3d8.so \
+                     build/android-arm64/GeneralsMD/Code/Main/libmain.so; do
+            [ -f "$lib" ] && "$NM" -C -n --defined-only "$lib" | grep -iE " [tTwW] " | gzip -9 > "$D/syms-$(basename "$lib").txt.gz" || true
+          done
           echo "${{ job.status }} ${{ github.sha }}" > "$D/STATUS"
           cd /tmp/ci-logs
           git init -q -b ci-logs

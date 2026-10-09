@@ -1088,6 +1088,25 @@ void DX8Wrapper::Enumerate_Devices()
 				}
 			}
 
+			// ZH Mobile @bugfix Claude 09/10/2026 Mobile displays have no mode list: DXVK reports
+			// no enumerable modes on Android, which left the device table empty and crashed the
+			// options menu (and the startup fallback path) on _RenderDeviceDescriptionTable[0].
+			// Offer the current display mode and the native panel size instead.
+			if (desc.Enumerate_Resolutions().Count() == 0) {
+				D3DDISPLAYMODE current;
+				::ZeroMemory(&current, sizeof(current));
+				if (SUCCEEDED(D3DInterface->GetAdapterDisplayMode(adapter_index, &current))
+				    && current.Width > 0 && current.Height > 0) {
+					desc.add_resolution(current.Width, current.Height, 32);
+				}
+				int nativeW = 0, nativeH = 0;
+				float density = 1.0f;
+				if (GetNativeDisplaySize(nativeW, nativeH, density) && nativeW > 0 && nativeH > 0
+				    && (nativeW != (int)current.Width || nativeH != (int)current.Height)) {
+					desc.add_resolution(nativeW, nativeH, 32);
+				}
+			}
+
 			// IML: If the device has one or more valid resolutions add it to the device list.
 			// NOTE: Testing has shown that there are drivers with zero resolutions.
 			if (desc.Enumerate_Resolutions().Count() > 0) {

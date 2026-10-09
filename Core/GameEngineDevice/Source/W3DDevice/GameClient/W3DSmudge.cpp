@@ -202,6 +202,13 @@ error:
 
 Bool W3DSmudgeManager::testHardwareSupport()
 {
+#if defined(__ANDROID__)
+	// ZH Mobile @bugfix Claude 09/10/2026 The heat-haze pass (backbuffer copy + smudge
+	// quads) crashes inside DXVK's d3d9 draw path on the Samsung Xclipse driver as soon
+	// as a match starts. Report the effect as unsupported, which is the engine's own
+	// path for GPUs without render-to-texture: everything else renders unchanged.
+	m_hardwareSupportStatus = SMUDGE_SUPPORT_NO;
+#endif
 	if (m_hardwareSupportStatus == SMUDGE_SUPPORT_UNKNOWN)
 	{	//we have not done the test yet.
 
