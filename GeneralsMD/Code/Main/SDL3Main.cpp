@@ -757,6 +757,15 @@ int main(int argc, char* argv[])
 		// For now, let CommandLine::parseCommandLineForStartup() handle this
 		fprintf(stderr, "INFO: startup: parse command line\n");
 		CommandLine::parseCommandLineForStartup();
+#if defined(__ANDROID__)
+		// ZH Mobile @bugfix Claude 09/10/2026 Present in "windowed" mode (one back buffer).
+		// The window is fullscreen anyway; with the fullscreen setting the engine asks for
+		// two flipping back buffers, and screens that redraw only part of the frame (the
+		// loading bar) then alternate between two stale images: visible flicker on device.
+		if (TheWritableGlobalData != nullptr) {
+			TheWritableGlobalData->m_windowed = TRUE;
+		}
+#endif
 
 		// GeneralsX @bugfix Copilot 17/05/2026 Skip SDL3 window bootstrap for CLI/headless replay execution.
 		const bool isHeadlessMode = (TheGlobalData != nullptr && TheGlobalData->m_headless);
@@ -792,8 +801,13 @@ int main(int argc, char* argv[])
 		// GeneralsX @bugfix BenderAI 06/03/2026 - Exclude LLVMpipe Vulkan ICD before loading Vulkan.
 		// libvulkan_lvp.so crashes during static initialization with LLVM 20.x when the Vulkan
 		// loader enumerates all ICDs. Restrict to hardware ICDs first.
+#if !defined(__ANDROID__)
+		// Desktop-Linux workarounds only. Android also defines __linux__, but its Vulkan
+		// loader has no ICD directories, and ALSOFT_DRIVERS=pulse,alsa,... would exclude
+		// OpenSL ES, Android's only OpenAL backend here, leaving the game silent.
 		FilterSoftwareVulkanICDs();
 		FilterPipeWireOpenAL();
+#endif
 
 		// Load Vulkan library for DXVK DirectX8→Vulkan translation
 		fprintf(stderr, "INFO: Loading Vulkan library...\n");
