@@ -1,0 +1,22 @@
+  staged libmain.so  <- build/android-arm64/GeneralsMD/Code/Main/libmain.so
+  staged libdxvk_d3d8.so  <- build/android-arm64/libdxvk_d3d8.so
+  staged libdxvk_d3d9.so  <- build/android-arm64/libdxvk_d3d9.so
+  staged libSDL3_image.so  <- build/android-arm64/_deps/sdl3_image-build/libSDL3_image.so
+  staged libSDL3.so  <- build/android-arm64/_deps/sdl3-build/libSDL3.so
+  staged libgamespy.so  <- build/android-arm64/libgamespy.so
+  staged libopenal.so  <- build/android-arm64/_deps/openal_soft-build/libopenal.so
+==> 7 libraries, 41M staged in android/app/jniLibs/arm64-v8a
+==> Downloading Liberation fonts 2.1.5
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+100 2329k  100 2329k    0     0  3883k      0 --:--:-- --:--:-- --:--:-- 3883k
+/tmp/tmp.EiQc06wYvZ/liberation.tar.gz: OK
+==> Staged APK game-data assets:
+    dxvk.conf
+    fonts/LICENSE-Liberation.txt
+    fonts/arialbold.ttf
+    fonts/couriernew.ttf
+    fonts/timesnewroman.ttf
+    fonts/arial.ttf
+    DefaultOptions.ini
