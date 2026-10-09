@@ -3,6 +3,7 @@
 # Applied to references/fbraz3-dxvk @46a3bc01 for the Android build:
 #  - SDL3 WSI: size the swapchain in pixels (same fix as the iOS port)
 #  - SDL3 WSI: load libSDL3.so (Android has no versioned sonames)
+#  - SDL3 WSI: log SDL_GetError() when surface creation fails
 #  - meson: no versioned sonames / static libstdc++ on Android (APK packaging)
 # Apply with: git -C references/fbraz3-dxvk apply ../../Patches/dxvk-android.patch
 diff --git a/meson.build b/meson.build
@@ -65,7 +66,7 @@ index 624c2193..feb5f61a 100644
  SDL_PROC(bool, SDL_SetWindowPosition, (SDL_Window*, int, int))
  SDL_PROC(bool, SDL_SetWindowFullscreen, (SDL_Window*, bool))
 diff --git a/src/wsi/sdl3/wsi_window_sdl3.cpp b/src/wsi/sdl3/wsi_window_sdl3.cpp
-index 10fca478..be0828f5 100644
+index 10fca478..21503b09 100644
 --- a/src/wsi/sdl3/wsi_window_sdl3.cpp
 +++ b/src/wsi/sdl3/wsi_window_sdl3.cpp
 @@ -22,8 +22,12 @@ namespace dxvk::wsi {
@@ -83,3 +84,18 @@ index 10fca478..be0828f5 100644
  
      if (pWidth)
        *pWidth = uint32_t(w);
+@@ -168,8 +172,12 @@ namespace dxvk::wsi {
+           VkSurfaceKHR*             pSurface) {
+     SDL_Window* window = fromHwnd(hWindow);
+ 
+-    return SDL_Vulkan_CreateSurface(window, instance, nullptr, pSurface)
+-      ? VK_SUCCESS : VK_ERROR_OUT_OF_HOST_MEMORY;
++    if (SDL_Vulkan_CreateSurface(window, instance, nullptr, pSurface))
++      return VK_SUCCESS;
++
++    // SDL only reports a bool; keep its reason, the VkResult below is a placeholder.
++    Logger::err(str::format("SDL3 WSI: SDL_Vulkan_CreateSurface failed: ", SDL_GetError()));
++    return VK_ERROR_OUT_OF_HOST_MEMORY;
+   }
+ 
+ }
